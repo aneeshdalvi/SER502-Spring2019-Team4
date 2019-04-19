@@ -10,28 +10,40 @@ block
 	command
 	;
 
-declaration : datatype identifier ';' |
-			  datatype identifier '=' digit|
+declaration : datatype IDENTIFIER ';' |
+			  datatype IDENTIFIER '=' DIGIT|
+			  datatype IDENTIFIER '=' BOOLEAN|
+			  datatype IDENTIFIER ';' declaration |
+			  datatype IDENTIFIER '=' DIGIT ';' declaration |
+			  datatype IDENTIFIER '=' BOOLEAN ';' declaration
 			;
 			
 command : 'test';
 
-unit : identifier|
-		 digit
+unit : IDENTIFIER|
+		 DIGIT
 		 ;
 		 
-digit : '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'
-		;
-
 datatype : 'int' | 
 		   'bool'
 		   ;
+		 
+// accepts numbers from 0-9 and more than that.	 
+DIGIT 
+	: [1-9] [0-9]* |
+	'0'
+	;
+	
+// Takes Boolean value as True or false.
+BOOLEAN
+	: 'TRUE'
+	| 'FALSE'
+	;
 		   
-		   
-identifier : 'a'|
-			 'b'|
-			 'c'
-			 ;
+// Accepts lower case and upper case letters.   
+IDENTIFIER 
+		: [a-zA-Z_] [a-zA-Z_0-9]*
+		;
 
 
 WS      : [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
