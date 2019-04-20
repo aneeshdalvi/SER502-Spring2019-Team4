@@ -12,18 +12,18 @@ block
 
 declaration : DATATYPE IDENTIFIER KHATAMOFSTATEMENT |
 			  DATATYPE IDENTIFIER ASSIGNMENT DIGIT|
-			  DATATYPE IDENTIFIER ASSIGNMENT BOOLEAN|
+			  DATATYPE IDENTIFIER ASSIGNMENT booleanexp|
 			  DATATYPE IDENTIFIER KHATAMOFSTATEMENT declaration |
 			  DATATYPE IDENTIFIER ASSIGNMENT DIGIT KHATAMOFSTATEMENT declaration |
-			  DATATYPE IDENTIFIER ASSIGNMENT BOOLEAN KHATAMOFSTATEMENT declaration
+			  DATATYPE IDENTIFIER ASSIGNMENT booleanexp KHATAMOFSTATEMENT declaration
 			;
 			
 			
 command : expression KHATAMOFSTATEMENT |
 		  SHURU block KHATAM |
-		  WHILE  BOOLEAN SHURU block KHATAM KHATAMWHILE |
-		  IF BOOLEAN SHURU block KHATAM ELSE SHURU block KHATAM KHATAMIF |
-		  IF BOOLEAN SHURU block KHATAM KHATAMIF |
+		  WHILE  booleanexp SHURU block KHATAM KHATAMWHILE |
+		  IF booleanexp SHURU block KHATAM ELSE SHURU block KHATAM KHATAMIF |
+		  IF booleanexp SHURU block KHATAM KHATAMIF |
 		  expression GREATERTHAN expression |
 		  expression LESSTHAN expression |
 		  expression EQUALS expression
@@ -58,11 +58,11 @@ DIGIT
 	;
 	
 // Takes Boolean value as True or false.
-BOOLEAN
+booleanexp
 	: 'TRUE'
 	| 'FALSE'
 	| expression ASSIGNMENT expression
-	| NOTEQUALTO BOOLEAN
+	| NOTEQUALTO booleanexp
 	;
 		   
 // Accepts lower case and upper case letters.   
