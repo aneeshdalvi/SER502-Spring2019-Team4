@@ -18,7 +18,18 @@ declaration : datatype IDENTIFIER ';' |
 			  datatype IDENTIFIER '=' BOOLEAN ';' declaration
 			;
 			
-command : 'test';
+			
+command : expression ';' |
+		  'shuru' block 'khtam' |
+		  'jabtak'  BOOLEAN 'shuru' block 'khatam' 'tabtak' |
+		  'agar' BOOLEAN 'shuru' block 'khatam' 'nahitoh' 'shuru' block 'khatam' 'bas' |
+		  'agar' BOOLEAN 'shuru' block 'khatam' 'bas' |
+		  expression '>' expression |
+		  expression '<' expression |
+		  expression '==' expression
+		  ;
+
+expression : 'test';
 
 unit : IDENTIFIER|
 		 DIGIT
