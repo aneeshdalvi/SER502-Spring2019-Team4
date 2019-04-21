@@ -8,7 +8,6 @@ import org.antlr.v4.runtime.CharStreams;
 public class CompilerMain {
 
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
 		
 		String inputFile = "inputTestFile1.desi";
 
