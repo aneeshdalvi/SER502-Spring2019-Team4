@@ -1,0 +1,10 @@
+shuru
+	int a = 9;
+	int b = 5;
+        
+	agar b < a   
+        shuru
+        	jabtak b < a shuru b = b + 1 ; khatam tabtak 
+        khatam
+	bas
+khatam
