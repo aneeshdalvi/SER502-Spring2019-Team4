@@ -1,4 +1,4 @@
-package desi;
+// Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -27,16 +27,6 @@ public interface DesiGrammarListener extends ParseTreeListener {
 	 */
 	void exitBlock(DesiGrammarParser.BlockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DesiGrammarParser#declaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclaration(DesiGrammarParser.DeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DesiGrammarParser#declaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclaration(DesiGrammarParser.DeclarationContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link DesiGrammarParser#command}.
 	 * @param ctx the parse tree
 	 */
@@ -47,63 +37,207 @@ public interface DesiGrammarListener extends ParseTreeListener {
 	 */
 	void exitCommand(DesiGrammarParser.CommandContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DesiGrammarParser#expression}.
+	 * Enter a parse tree produced by the {@code assignmentInteger}
+	 * labeled alternative in {@link DesiGrammarParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpression(DesiGrammarParser.ExpressionContext ctx);
+	void enterAssignmentInteger(DesiGrammarParser.AssignmentIntegerContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DesiGrammarParser#expression}.
+	 * Exit a parse tree produced by the {@code assignmentInteger}
+	 * labeled alternative in {@link DesiGrammarParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpression(DesiGrammarParser.ExpressionContext ctx);
+	void exitAssignmentInteger(DesiGrammarParser.AssignmentIntegerContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DesiGrammarParser#expression1}.
+	 * Enter a parse tree produced by the {@code assignmentBoolean}
+	 * labeled alternative in {@link DesiGrammarParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpression1(DesiGrammarParser.Expression1Context ctx);
+	void enterAssignmentBoolean(DesiGrammarParser.AssignmentBooleanContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DesiGrammarParser#expression1}.
+	 * Exit a parse tree produced by the {@code assignmentBoolean}
+	 * labeled alternative in {@link DesiGrammarParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpression1(DesiGrammarParser.Expression1Context ctx);
+	void exitAssignmentBoolean(DesiGrammarParser.AssignmentBooleanContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DesiGrammarParser#term}.
+	 * Enter a parse tree produced by the {@code expressionBooleanParentheses}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
 	 * @param ctx the parse tree
 	 */
-	void enterTerm(DesiGrammarParser.TermContext ctx);
+	void enterExpressionBooleanParentheses(DesiGrammarParser.ExpressionBooleanParenthesesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DesiGrammarParser#term}.
+	 * Exit a parse tree produced by the {@code expressionBooleanParentheses}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
 	 * @param ctx the parse tree
 	 */
-	void exitTerm(DesiGrammarParser.TermContext ctx);
+	void exitExpressionBooleanParentheses(DesiGrammarParser.ExpressionBooleanParenthesesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DesiGrammarParser#factor}.
+	 * Enter a parse tree produced by the {@code expressionBoolean}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
 	 * @param ctx the parse tree
 	 */
-	void enterFactor(DesiGrammarParser.FactorContext ctx);
+	void enterExpressionBoolean(DesiGrammarParser.ExpressionBooleanContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DesiGrammarParser#factor}.
+	 * Exit a parse tree produced by the {@code expressionBoolean}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
 	 * @param ctx the parse tree
 	 */
-	void exitFactor(DesiGrammarParser.FactorContext ctx);
+	void exitExpressionBoolean(DesiGrammarParser.ExpressionBooleanContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DesiGrammarParser#unit}.
+	 * Enter a parse tree produced by the {@code expressionBooleanComparison}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
 	 * @param ctx the parse tree
 	 */
-	void enterUnit(DesiGrammarParser.UnitContext ctx);
+	void enterExpressionBooleanComparison(DesiGrammarParser.ExpressionBooleanComparisonContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DesiGrammarParser#unit}.
+	 * Exit a parse tree produced by the {@code expressionBooleanComparison}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
 	 * @param ctx the parse tree
 	 */
-	void exitUnit(DesiGrammarParser.UnitContext ctx);
+	void exitExpressionBooleanComparison(DesiGrammarParser.ExpressionBooleanComparisonContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DesiGrammarParser#booleanexp}.
+	 * Enter a parse tree produced by the {@code expressionBooleanConnector}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
 	 * @param ctx the parse tree
 	 */
-	void enterBooleanexp(DesiGrammarParser.BooleanexpContext ctx);
+	void enterExpressionBooleanConnector(DesiGrammarParser.ExpressionBooleanConnectorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DesiGrammarParser#booleanexp}.
+	 * Exit a parse tree produced by the {@code expressionBooleanConnector}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
 	 * @param ctx the parse tree
 	 */
-	void exitBooleanexp(DesiGrammarParser.BooleanexpContext ctx);
+	void exitExpressionBooleanConnector(DesiGrammarParser.ExpressionBooleanConnectorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionNumberComparison}
+	 * labeled alternative in {@link DesiGrammarParser#comp_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNumberComparison(DesiGrammarParser.ExpressionNumberComparisonContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionNumberComparison}
+	 * labeled alternative in {@link DesiGrammarParser#comp_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNumberComparison(DesiGrammarParser.ExpressionNumberComparisonContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionNumberParentheses}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNumberParentheses(DesiGrammarParser.ExpressionNumberParenthesesContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionNumberParentheses}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNumberParentheses(DesiGrammarParser.ExpressionNumberParenthesesContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionNumberPlusMinus}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNumberPlusMinus(DesiGrammarParser.ExpressionNumberPlusMinusContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionNumberPlusMinus}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNumberPlusMinus(DesiGrammarParser.ExpressionNumberPlusMinusContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionNumberMultiplyDivide}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNumberMultiplyDivide(DesiGrammarParser.ExpressionNumberMultiplyDivideContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionNumberMultiplyDivide}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNumberMultiplyDivide(DesiGrammarParser.ExpressionNumberMultiplyDivideContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionNumberIdentifierOnly}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNumberIdentifierOnly(DesiGrammarParser.ExpressionNumberIdentifierOnlyContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionNumberIdentifierOnly}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNumberIdentifierOnly(DesiGrammarParser.ExpressionNumberIdentifierOnlyContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionNumberOnly}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionNumberOnly(DesiGrammarParser.ExpressionNumberOnlyContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionNumberOnly}
+	 * labeled alternative in {@link DesiGrammarParser#num_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionNumberOnly(DesiGrammarParser.ExpressionNumberOnlyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DesiGrammarParser#cond_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterCond_expressn(DesiGrammarParser.Cond_expressnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DesiGrammarParser#cond_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitCond_expressn(DesiGrammarParser.Cond_expressnContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DesiGrammarParser#ifExpressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfExpressn(DesiGrammarParser.IfExpressnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DesiGrammarParser#ifExpressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfExpressn(DesiGrammarParser.IfExpressnContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DesiGrammarParser#elseIfExpressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseIfExpressn(DesiGrammarParser.ElseIfExpressnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DesiGrammarParser#elseIfExpressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseIfExpressn(DesiGrammarParser.ElseIfExpressnContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DesiGrammarParser#elseExpressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseExpressn(DesiGrammarParser.ElseExpressnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DesiGrammarParser#elseExpressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseExpressn(DesiGrammarParser.ElseExpressnContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DesiGrammarParser#whileExpressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileExpressn(DesiGrammarParser.WhileExpressnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DesiGrammarParser#whileExpressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileExpressn(DesiGrammarParser.WhileExpressnContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DesiGrammarParser#print}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrint(DesiGrammarParser.PrintContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DesiGrammarParser#print}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrint(DesiGrammarParser.PrintContext ctx);
 }
