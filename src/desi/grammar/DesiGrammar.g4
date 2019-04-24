@@ -1,4 +1,4 @@
-grammar DesiGrammar1;
+grammar DesiGrammar;
 
 
 program
