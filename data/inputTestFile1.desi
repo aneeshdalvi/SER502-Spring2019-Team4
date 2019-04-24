@@ -1,4 +1,6 @@
 shuru
 int a = 8
-a = a + 1 + 2
+int b = 2
+int c
+c = a / b
 khatam

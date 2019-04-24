@@ -4,6 +4,7 @@ import desi.DesiGrammarParser.AssignmentIntegerContext;
 import desi.DesiGrammarParser.BlockContext;
 import desi.DesiGrammarParser.CommandContext;
 import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
+import desi.DesiGrammarParser.ExpressionNumberMultiplyDivideContext;
 import desi.DesiGrammarParser.ExpressionNumberOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberPlusMinusContext;
 import desi.DesiGrammarParser.ProgramContext;
@@ -76,6 +77,30 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		}
 		return null; 
 	}
+	
+	
+	@Override
+	public Object visitExpressionNumberMultiplyDivide(ExpressionNumberMultiplyDivideContext ctx) {
+//		System.out.println(ctx.getText());
+
+		visit(ctx.num_expressn(0));
+		intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
+		visit(ctx.num_expressn(1));
+		intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
+		
+		switch(ctx.op.getType()) {
+			case DesiGrammarParser.MUL:
+				intermediateCodeGenerator.addIntermediateOutput("MUL ACC A B");
+				break;
+			case DesiGrammarParser.DIV:
+				intermediateCodeGenerator.addIntermediateOutput("DIV ACC C B");
+				break;
+		}
+
+		return null;
+	}
+	
+	
 	
 	@Override
 	public Object visitExpressionNumberIdentifierOnly(ExpressionNumberIdentifierOnlyContext ctx) {
