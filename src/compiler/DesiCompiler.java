@@ -7,6 +7,8 @@ import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberPlusMinusContext;
 import desi.DesiGrammarParser.ProgramContext;
+import desi.DesiGrammarParser.WhileExpressnContext;
+import runtime.DesiRuntimeConstants;
 import desi.DesiGrammarBaseVisitor;
 import desi.DesiGrammarParser;
 
@@ -60,7 +62,6 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	
 	@Override
 	public Object visitExpressionNumberPlusMinus(ExpressionNumberPlusMinusContext ctx) {
-		
 		visit(ctx.num_expressn(0));
 		intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
 		visit(ctx.num_expressn(1));
@@ -76,6 +77,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		}
 		return null; 
 	}
+	
 	
 	@Override
 	public Object visitExpressionNumberIdentifierOnly(ExpressionNumberIdentifierOnlyContext ctx) {
@@ -96,6 +98,17 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 			doubleValue = -doubleValue;
 		}
 		intermediateCodeGenerator.addIntermediateOutput("LOAD ACC "+ doubleValue);
+		return null; 
+	}
+	
+	@Override
+	public Object visitWhileExpressn(WhileExpressnContext ctx) {
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WHILE_START);
+		intermediateCodeGenerator.addIntermediateOutput("WHILE CONDITION START");
+		visit(ctx.cond_expressn());
+		intermediateCodeGenerator.addIntermediateOutput("WHILE CONDITION END");
+        visit(ctx.block());
+        intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WHILE_END);
 		return null; 
 	}
 }
