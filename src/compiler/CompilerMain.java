@@ -10,7 +10,6 @@ import desi.DesiGrammarLexer;
 import desi.DesiGrammarParser;
 
 
-
 public class CompilerMain {
 
 	public static void main(String[] args) throws IOException {
@@ -24,14 +23,6 @@ public class CompilerMain {
 		ParseTree tree  = parser.program();
 		new DesiCompiler().visit(tree);	
 		
-		
-		
-		/*DemoLexer lexer = new DemoLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		DemoParser parser = new DemoParser(tokens);
-		
-		ParseTree tree  = parser.addition();
-		new DesiCompiler().visit(tree);	*/
 		
 
 	}
