@@ -61,9 +61,9 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitExpressionNumberPlusMinus(ExpressionNumberPlusMinusContext ctx) {
 		
-		visit(ctx.num_expressn(1));
-		intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
 		visit(ctx.num_expressn(0));
+		intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
+		visit(ctx.num_expressn(1));
 		intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
 		
 		switch(ctx.op.getType()) {
