@@ -3,10 +3,14 @@ package compiler;
 import desi.DesiGrammarParser.AssignmentIntegerContext;
 import desi.DesiGrammarParser.BlockContext;
 import desi.DesiGrammarParser.CommandContext;
+import desi.DesiGrammarParser.Cond_expressnContext;
+import desi.DesiGrammarParser.ElseExpressnContext;
+import desi.DesiGrammarParser.ElseIfExpressnContext;
 import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberMultiplyDivideContext;
 import desi.DesiGrammarParser.ExpressionNumberOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberPlusMinusContext;
+import desi.DesiGrammarParser.IfExpressnContext;
 import desi.DesiGrammarParser.ProgramContext;
 import desi.DesiGrammarParser.WhileExpressnContext;
 import runtime.DesiRuntimeConstants;
@@ -101,8 +105,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		return null;
 	}
 	
-	
-	
+
 	@Override
 	public Object visitExpressionNumberIdentifierOnly(ExpressionNumberIdentifierOnlyContext ctx) {
 		String identifier = ctx.IDENTIFIER().getText();
@@ -135,5 +138,57 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
         intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WHILE_END);
 		return null; 
 	}
+	
+	
+	@Override
+	public Object visitCond_expressn(Cond_expressnContext ctx) {
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.CONDITION_START);
+		visit(ctx.bool_expressn());
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.CONDITION_END);
+		return null; 
+		
+	}
+	
+	@Override
+	public Object visitIfExpressn(IfExpressnContext ctx) {
+//		System.out.println("in if");
+//		System.out.println(ctx.getText());
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.IF_ELSE_START);
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.IF_START);
+		visit(ctx.cond_expressn());
+		visit(ctx.block());
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.IF_END);
+		for(int i=0; i < ctx.elseIfExpressn().size(); i++) {
+			visit(ctx.elseIfExpressn(i));
+		}
+		if(ctx.elseExpressn() != null) {
+			visit(ctx.elseExpressn());
+		}
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.IF_ELSE_END);
+		return null; 
+//		return super.visitIfExpressn(ctx);
+	}
+	
+	@Override
+	public Object visitElseExpressn(ElseExpressnContext ctx) {
+//		System.out.println(ctx.getText());
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ELSE_START);
+		visit(ctx.block());
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ELSE_END);
+		return null; 
+	}
+	
+	@Override
+	public Object visitElseIfExpressn(ElseIfExpressnContext ctx) {
+//		System.out.println(ctx.getText());
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ELSE_IF_START);
+		visit(ctx.cond_expressn());
+		visit(ctx.block());
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ELSE_IF_END);
+		return null; 
+	}
+	
+
+	
 }
 

@@ -14,7 +14,7 @@ public class CompilerMain {
 
 	public static void main(String[] args) throws IOException {
 		
-		ANTLRInputStream input = new ANTLRFileStream("data/inputTestFile1.desi");
+		ANTLRInputStream input = new ANTLRFileStream("data/inputTestFile3.desi");
 		
 		DesiGrammarLexer lexer = new DesiGrammarLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
