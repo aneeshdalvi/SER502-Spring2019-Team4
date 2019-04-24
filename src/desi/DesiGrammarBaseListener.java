@@ -1,4 +1,4 @@
-package desi;
+// Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -39,18 +39,6 @@ public class DesiGrammarBaseListener implements DesiGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaration(DesiGrammarParser.DeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeclaration(DesiGrammarParser.DeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCommand(DesiGrammarParser.CommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -63,73 +51,217 @@ public class DesiGrammarBaseListener implements DesiGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression(DesiGrammarParser.ExpressionContext ctx) { }
+	@Override public void enterAssignmentInteger(DesiGrammarParser.AssignmentIntegerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression(DesiGrammarParser.ExpressionContext ctx) { }
+	@Override public void exitAssignmentInteger(DesiGrammarParser.AssignmentIntegerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression1(DesiGrammarParser.Expression1Context ctx) { }
+	@Override public void enterAssignmentBoolean(DesiGrammarParser.AssignmentBooleanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression1(DesiGrammarParser.Expression1Context ctx) { }
+	@Override public void exitAssignmentBoolean(DesiGrammarParser.AssignmentBooleanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTerm(DesiGrammarParser.TermContext ctx) { }
+	@Override public void enterExpressionBooleanParentheses(DesiGrammarParser.ExpressionBooleanParenthesesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTerm(DesiGrammarParser.TermContext ctx) { }
+	@Override public void exitExpressionBooleanParentheses(DesiGrammarParser.ExpressionBooleanParenthesesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFactor(DesiGrammarParser.FactorContext ctx) { }
+	@Override public void enterExpressionBoolean(DesiGrammarParser.ExpressionBooleanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFactor(DesiGrammarParser.FactorContext ctx) { }
+	@Override public void exitExpressionBoolean(DesiGrammarParser.ExpressionBooleanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnit(DesiGrammarParser.UnitContext ctx) { }
+	@Override public void enterExpressionBooleanComparison(DesiGrammarParser.ExpressionBooleanComparisonContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnit(DesiGrammarParser.UnitContext ctx) { }
+	@Override public void exitExpressionBooleanComparison(DesiGrammarParser.ExpressionBooleanComparisonContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBooleanexp(DesiGrammarParser.BooleanexpContext ctx) { }
+	@Override public void enterExpressionBooleanConnector(DesiGrammarParser.ExpressionBooleanConnectorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBooleanexp(DesiGrammarParser.BooleanexpContext ctx) { }
+	@Override public void exitExpressionBooleanConnector(DesiGrammarParser.ExpressionBooleanConnectorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressionNumberComparison(DesiGrammarParser.ExpressionNumberComparisonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionNumberComparison(DesiGrammarParser.ExpressionNumberComparisonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressionNumberParentheses(DesiGrammarParser.ExpressionNumberParenthesesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionNumberParentheses(DesiGrammarParser.ExpressionNumberParenthesesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressionNumberPlusMinus(DesiGrammarParser.ExpressionNumberPlusMinusContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionNumberPlusMinus(DesiGrammarParser.ExpressionNumberPlusMinusContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressionNumberMultiplyDivide(DesiGrammarParser.ExpressionNumberMultiplyDivideContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionNumberMultiplyDivide(DesiGrammarParser.ExpressionNumberMultiplyDivideContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressionNumberIdentifierOnly(DesiGrammarParser.ExpressionNumberIdentifierOnlyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionNumberIdentifierOnly(DesiGrammarParser.ExpressionNumberIdentifierOnlyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressionNumberOnly(DesiGrammarParser.ExpressionNumberOnlyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionNumberOnly(DesiGrammarParser.ExpressionNumberOnlyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCond_expressn(DesiGrammarParser.Cond_expressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCond_expressn(DesiGrammarParser.Cond_expressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIfExpressn(DesiGrammarParser.IfExpressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfExpressn(DesiGrammarParser.IfExpressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterElseIfExpressn(DesiGrammarParser.ElseIfExpressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElseIfExpressn(DesiGrammarParser.ElseIfExpressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterElseExpressn(DesiGrammarParser.ElseExpressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElseExpressn(DesiGrammarParser.ElseExpressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWhileExpressn(DesiGrammarParser.WhileExpressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhileExpressn(DesiGrammarParser.WhileExpressnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrint(DesiGrammarParser.PrintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrint(DesiGrammarParser.PrintContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
