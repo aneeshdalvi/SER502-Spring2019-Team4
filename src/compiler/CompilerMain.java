@@ -21,9 +21,10 @@ public class CompilerMain {
 		DesiGrammarParser parser = new DesiGrammarParser(tokens);
 		
 		ParseTree tree  = parser.program();
-		new DesiCompiler().visit(tree);	
+		DesiCompiler d = new DesiCompiler();
+		d.visit(tree);
 		
-		
+		System.out.println(d.getOutput());
 
 	}
 
