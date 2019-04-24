@@ -3,8 +3,9 @@ package compiler;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-
+import desi.DesiGrammarParser.AssignmentIntegerContext;
 import desi.DesiGrammarParser.BlockContext;
+import desi.DesiGrammarParser.CommandContext;
 import desi.DesiGrammarParser.ProgramContext;
 import desi.DesiGrammarBaseVisitor;
 
@@ -37,19 +38,35 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	
 		@Override
 		public Object visitBlock(BlockContext ctx) {
-			
-			
-			System.out.println("in block");
-			System.out.println(ctx.getChildCount());
-			System.out.println(ctx.getChild(0).getChild(0).getChild(0));
-			System.out.println("out block");
-			
-			
-			return super.visitBlock(ctx);
+
+			return visitChildren(ctx);
 		}
 	
+		@Override
+		public Object visitCommand(CommandContext ctx) {
+			// TODO Auto-generated method stub
+			
+//			System.out.println(ctx.getChildCount());
+//			System.out.println(ctx.getChild(0).getChild(0));
+			System.out.println("out command");
+			
+			return visitChildren(ctx);
+		}
 	
-	
+		
+		@Override
+		public Object visitAssignmentInteger(AssignmentIntegerContext ctx) {
+			// TODO Auto-generated method stub
+			System.out.println("in assign");
+			System.out.println(ctx.getChildCount());
+			System.out.println(ctx.getChild(0));
+			System.out.println(ctx.getChild(1));
+			System.out.println(ctx.getChild(2));
+			System.out.println(ctx.getChild(3));
+			System.out.println("out assign");
+			return super.visitAssignmentInteger(ctx);
+		}
+		
 	/*
 @Override
 public Object visitAddition(AdditionContext ctx) {
