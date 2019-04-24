@@ -29,7 +29,10 @@ public class DesiRuntimeMain {
 	        try {
 
 	            DesiRuntime runtime = new DesiRuntime(code.toString());
+<<<<<<< HEAD
 	            runtime.execute();
+=======
+>>>>>>> 3ff2c6376793a68e0e113bdecf65e8e446415008
 	        }
 	        catch(Exception e) {
 	        	e.printStackTrace();

@@ -25,21 +25,26 @@ public class DesiRuntime implements DesiRuntimeConstants{
 		 initializeStackMemory();
 
 	        while(programCounter < intermediateCode.size()) {
+
 	        	programCounter = executeInstructionHandler(intermediateCode.get(programCounter), programCounter) + 1;
+
 	        }
 
 	        System.out.println();
 	    }
 
+
 	    private int executeInstructionHandler(String currentInstruction, int programCounter) {
 	    	
 	    String[] instructions = splitInstruction(currentInstruction);
-		System.out.println("instructions[0]" + instructions[0]);
+		System.out.println("instruction " + instructions[0]);
 		return programCounter;
 	}
 
 
-		private void initializeStackMemory() {
+
+	    private void initializeStackMemory() {
+
 
 	    	memoryStack.push(new HashMap<>());
 
