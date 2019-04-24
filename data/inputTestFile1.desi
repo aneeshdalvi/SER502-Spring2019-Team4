@@ -1,3 +1,4 @@
 shuru
-int a = 1
+int a = 8
+a = a + 1
 khatam
