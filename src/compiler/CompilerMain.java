@@ -6,8 +6,6 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
 
-import desi.DemoLexer;
-import desi.DemoParser;
 import desi.DesiGrammarLexer;
 import desi.DesiGrammarParser;
 
