@@ -210,8 +210,32 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	
 	@Override
 	public Object visitExpressionNumberComparison(ExpressionNumberComparisonContext ctx) {
-		// TODO Auto-generated method stub
-		return super.visitExpressionNumberComparison(ctx);
+		visit(ctx.num_expressn(0));
+		intermediateCodeGenerator.addIntermediateOutput("SAVE A REG");
+		visit(ctx.num_expressn(1));
+		intermediateCodeGenerator.addIntermediateOutput("SAVE B REG");
+		
+		switch(ctx.op.getType()) {
+			case DesiGrammarParser.GREATER:
+				intermediateCodeGenerator.addIntermediateOutput("GREATER REG A B");
+				break;
+			case DesiGrammarParser.MORE_or_EQU:
+				intermediateCodeGenerator.addIntermediateOutput("GREATER_OR_EQUAL REG A B");
+				break;
+			case DesiGrammarParser.LESSER:
+				intermediateCodeGenerator.addIntermediateOutput("LESSER REG A B");
+				break;
+			case DesiGrammarParser.LESS_or_EQU:
+				intermediateCodeGenerator.addIntermediateOutput("LESSER_OR_EQUAL REG A B");
+				break;
+			case DesiGrammarParser.ISEquals:
+				intermediateCodeGenerator.addIntermediateOutput("EQUAL_TO REG A B");
+				break;
+			case DesiGrammarParser.NotEquals:
+				intermediateCodeGenerator.addIntermediateOutput("NOT_EQUAL_TO REG A B");
+				break;
+		}
+		return null; 
 	}
 }
 
