@@ -7,6 +7,7 @@ import desi.DesiGrammarParser.Cond_expressnContext;
 import desi.DesiGrammarParser.ElseExpressnContext;
 import desi.DesiGrammarParser.ElseIfExpressnContext;
 import desi.DesiGrammarParser.ExpressionBooleanConnectorContext;
+import desi.DesiGrammarParser.ExpressionNumberComparisonContext;
 import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberMultiplyDivideContext;
 import desi.DesiGrammarParser.ExpressionNumberOnlyContext;
@@ -188,13 +189,12 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	}
 	
 
-	
 	@Override
 	public Object visitExpressionBooleanConnector(ExpressionBooleanConnectorContext ctx) {
 		visit(ctx.bool_expressn(0));
-        intermediateCodeGenerator.addIntermediateOutput("SAVE A REG");
+        intermediateCodeGenerator.addIntermediateOutput("LOAD A REG");
         visit(ctx.bool_expressn(1));
-        intermediateCodeGenerator.addIntermediateOutput("SAVE B REG");
+        intermediateCodeGenerator.addIntermediateOutput("LOAD B REG");
 
         switch(ctx.op.getType()) {
             case DesiGrammarParser.AND:
@@ -207,5 +207,11 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		return null; 
 	}
 	
+	
+	@Override
+	public Object visitExpressionNumberComparison(ExpressionNumberComparisonContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitExpressionNumberComparison(ctx);
+	}
 }
 
