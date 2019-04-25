@@ -6,6 +6,7 @@ import desi.DesiGrammarParser.CommandContext;
 import desi.DesiGrammarParser.Cond_expressnContext;
 import desi.DesiGrammarParser.ElseExpressnContext;
 import desi.DesiGrammarParser.ElseIfExpressnContext;
+import desi.DesiGrammarParser.ExpressionBooleanConnectorContext;
 import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberMultiplyDivideContext;
 import desi.DesiGrammarParser.ExpressionNumberOnlyContext;
@@ -77,7 +78,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 				intermediateCodeGenerator.addIntermediateOutput("ADD ACC A B");
 				break;
 			case DesiGrammarParser.SUB:
-				intermediateCodeGenerator.addIntermediateOutput("SUB ACC C B");
+				intermediateCodeGenerator.addIntermediateOutput("SUB ACC B A");
 				break;
 		}
 		return null; 
@@ -131,9 +132,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitWhileExpressn(WhileExpressnContext ctx) {
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WHILE_START);
-		intermediateCodeGenerator.addIntermediateOutput("WHILE CONDITION START");
 		visit(ctx.cond_expressn());
-		intermediateCodeGenerator.addIntermediateOutput("WHILE CONDITION END");
         visit(ctx.block());
         intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WHILE_END);
 		return null; 
@@ -189,6 +188,24 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	}
 	
 
+	
+	@Override
+	public Object visitExpressionBooleanConnector(ExpressionBooleanConnectorContext ctx) {
+		visit(ctx.bool_expressn(0));
+        intermediateCodeGenerator.addIntermediateOutput("SAVE A REG");
+        visit(ctx.bool_expressn(1));
+        intermediateCodeGenerator.addIntermediateOutput("SAVE B REG");
+
+        switch(ctx.op.getType()) {
+            case DesiGrammarParser.AND:
+            	intermediateCodeGenerator.addIntermediateOutput("AND REG A B");
+                break;
+            case DesiGrammarParser.OR:
+            	intermediateCodeGenerator.addIntermediateOutput("OR REG A B");
+                break;
+        }
+		return null; 
+	}
 	
 }
 
