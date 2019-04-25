@@ -194,8 +194,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		return null; 
 	}
 	
-	// after this ..
-	
+
 	@Override
 	public Object visitAssignmentBoolean(AssignmentBooleanContext ctx) {
 		String identifier = ctx.IDENTIFIER().getText();
@@ -294,6 +293,32 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		visit(ctx.comp_expressn());
 		return null; 
 	}
+	
+	
+
+@Override
+    public Object visitExpressionBoolean(ExpressionBooleanContext ctx) {
+        visit(ctx.bool_expressn(0));
+        intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
+        visit(ctx.bool_expressn(1));
+        intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
+
+        switch(ctx.op.getType()) {
+            case DesiGrammarParser.ISEquals:
+                intermediateCodeGenerator.addIntermediateOutput("BOOL_ISEQUALS ACC A B");
+                break;
+            case DesiGrammarParser.NotEquals:
+                intermediateCodeGenerator.addIntermediateOutput("BOOL_IS_NOT_EQUALS ACC A B");
+                break;
+        }
+        return null;
+    }
+    
+    @Override
+    public Object visitExpressionBooleanParentheses(ExpressionBooleanParenthesesContext ctx) {
+        visit(ctx.bool_expressn());
+        return null;
+    }
 	
 
 }
