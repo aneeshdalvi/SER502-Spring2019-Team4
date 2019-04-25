@@ -1,5 +1,6 @@
 package compiler;
 
+import desi.DesiGrammarParser.AssignmentBooleanContext;
 import desi.DesiGrammarParser.AssignmentIntegerContext;
 import desi.DesiGrammarParser.BlockContext;
 import desi.DesiGrammarParser.CommandContext;
@@ -8,6 +9,9 @@ import desi.DesiGrammarParser.ElseExpressnContext;
 import desi.DesiGrammarParser.ElseIfExpressnContext;
 import desi.DesiGrammarParser.ExpressionBooleanConnectorContext;
 import desi.DesiGrammarParser.ExpressionNumberComparisonContext;
+import desi.DesiGrammarParser.ExpressionBooleanComparisonContext;
+import desi.DesiGrammarParser.ExpressionBooleanContext;
+import desi.DesiGrammarParser.ExpressionBooleanParenthesesContext;
 import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberMultiplyDivideContext;
 import desi.DesiGrammarParser.ExpressionNumberOnlyContext;
@@ -190,6 +194,21 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		return null; 
 	}
 	
+	// after this ..
+	
+	@Override
+	public Object visitAssignmentBoolean(AssignmentBooleanContext ctx) {
+		String identifier = ctx.IDENTIFIER().getText();
+		if(ctx.EQUALSto() != null) {
+            visit(ctx.bool_expressn());
+            intermediateCodeGenerator.addIntermediateOutput("LOAD " + identifier + " ACC");
+        }
+        else {
+        	intermediateCodeGenerator.addIntermediateOutput("LOAD " + identifier + " NULL");
+        }
+        return null;
+	}
+	
 
 	@Override
 	public Object visitExpressionBooleanConnector(ExpressionBooleanConnectorContext ctx) {
@@ -270,5 +289,12 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
         }
 		return null; 
 	}
+
+	public Object visitExpressionBooleanComparison(ExpressionBooleanComparisonContext ctx) {
+		visit(ctx.comp_expressn());
+		return null; 
+	}
+	
+
 }
 
