@@ -1,16 +1,24 @@
 package compiler;
 
+import desi.DesiGrammarParser.AssignmentBooleanContext;
 import desi.DesiGrammarParser.AssignmentIntegerContext;
 import desi.DesiGrammarParser.BlockContext;
 import desi.DesiGrammarParser.CommandContext;
 import desi.DesiGrammarParser.Cond_expressnContext;
 import desi.DesiGrammarParser.ElseExpressnContext;
 import desi.DesiGrammarParser.ElseIfExpressnContext;
+import desi.DesiGrammarParser.ExpressionBooleanConnectorContext;
+import desi.DesiGrammarParser.ExpressionNumberComparisonContext;
+import desi.DesiGrammarParser.ExpressionBooleanComparisonContext;
+import desi.DesiGrammarParser.ExpressionBooleanContext;
+import desi.DesiGrammarParser.ExpressionBooleanParenthesesContext;
 import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberMultiplyDivideContext;
 import desi.DesiGrammarParser.ExpressionNumberOnlyContext;
+import desi.DesiGrammarParser.ExpressionNumberParenthesesContext;
 import desi.DesiGrammarParser.ExpressionNumberPlusMinusContext;
 import desi.DesiGrammarParser.IfExpressnContext;
+import desi.DesiGrammarParser.PrintContext;
 import desi.DesiGrammarParser.ProgramContext;
 import desi.DesiGrammarParser.WhileExpressnContext;
 import runtime.DesiRuntimeConstants;
@@ -77,7 +85,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 				intermediateCodeGenerator.addIntermediateOutput("ADD ACC A B");
 				break;
 			case DesiGrammarParser.SUB:
-				intermediateCodeGenerator.addIntermediateOutput("SUB ACC C B");
+				intermediateCodeGenerator.addIntermediateOutput("SUB ACC B A");
 				break;
 		}
 		return null; 
@@ -131,9 +139,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitWhileExpressn(WhileExpressnContext ctx) {
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WHILE_START);
-		intermediateCodeGenerator.addIntermediateOutput("WHILE CONDITION START");
 		visit(ctx.cond_expressn());
-		intermediateCodeGenerator.addIntermediateOutput("WHILE CONDITION END");
         visit(ctx.block());
         intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WHILE_END);
 		return null; 
@@ -189,6 +195,131 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	}
 	
 
+	@Override
+	public Object visitAssignmentBoolean(AssignmentBooleanContext ctx) {
+		String identifier = ctx.IDENTIFIER().getText();
+		if(ctx.EQUALSto() != null) {
+            visit(ctx.bool_expressn());
+            intermediateCodeGenerator.addIntermediateOutput("LOAD " + identifier + " ACC");
+        }
+        else {
+        	intermediateCodeGenerator.addIntermediateOutput("LOAD " + identifier + " NULL");
+        }
+        return null;
+	}
 	
+
+	@Override
+	public Object visitExpressionBooleanConnector(ExpressionBooleanConnectorContext ctx) {
+		visit(ctx.bool_expressn(0));
+        intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
+        visit(ctx.bool_expressn(1));
+        intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
+
+        switch(ctx.op.getType()) {
+            case DesiGrammarParser.AND:
+            	intermediateCodeGenerator.addIntermediateOutput("AND ACC A B");
+                break;
+            case DesiGrammarParser.OR:
+            	intermediateCodeGenerator.addIntermediateOutput("OR ACC A B");
+                break;
+        }
+		return null; 
+	}
+	
+	
+	@Override
+	public Object visitExpressionNumberComparison(ExpressionNumberComparisonContext ctx) {
+		visit(ctx.num_expressn(0));
+		intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
+		visit(ctx.num_expressn(1));
+		intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
+		
+		switch(ctx.op.getType()) {
+			case DesiGrammarParser.GREATER:
+				intermediateCodeGenerator.addIntermediateOutput("GREATER ACC A B");
+				break;
+			case DesiGrammarParser.MORE_or_EQU:
+				intermediateCodeGenerator.addIntermediateOutput("GREATER_OR_EQUAL ACC A B");
+				break;
+			case DesiGrammarParser.LESSER:
+				intermediateCodeGenerator.addIntermediateOutput("LESSER ACC A B");
+				break;
+			case DesiGrammarParser.LESS_or_EQU:
+				intermediateCodeGenerator.addIntermediateOutput("LESSER_OR_EQUAL ACC A B");
+				break;
+			case DesiGrammarParser.ISEquals:
+				intermediateCodeGenerator.addIntermediateOutput("EQUAL_TO ACC A B");
+				break;
+			case DesiGrammarParser.NotEquals:
+				intermediateCodeGenerator.addIntermediateOutput("NOT_EQUAL_TO ACC A B");
+				break;
+		}
+		return null; 
+	}
+	
+	
+	@Override
+	public Object visitExpressionNumberParentheses(ExpressionNumberParenthesesContext ctx) {
+		visit(ctx.num_expressn());
+		return null;
+	}
+	
+	
+	@Override
+	public Object visitPrint(PrintContext ctx) {
+		
+		if(ctx.IDENTIFIER() != null) {
+			intermediateCodeGenerator.addIntermediateOutput("DISPLAY " + ctx.IDENTIFIER().getText());
+        }
+        else if(ctx.DIGITS() != null) {
+        	intermediateCodeGenerator.addIntermediateOutput("DISPLAY " + ctx.DIGITS().getText());            
+        }
+        else if(ctx.BOOLEAN() != null) {
+        	intermediateCodeGenerator.addIntermediateOutput("DISPLAY " + ctx.BOOLEAN().getText());
+        }
+        else if(ctx.num_expressn() != null) {
+            visit(ctx.num_expressn());
+            intermediateCodeGenerator.addIntermediateOutput("DISPLAY ACC");
+        }
+        else if(ctx.bool_expressn() != null) {
+            visit(ctx.bool_expressn());
+            intermediateCodeGenerator.addIntermediateOutput("DISPLAY ACC");
+        }
+		return null; 
+	}
+
+	public Object visitExpressionBooleanComparison(ExpressionBooleanComparisonContext ctx) {
+		visit(ctx.comp_expressn());
+		return null; 
+	}
+	
+	
+
+@Override
+    public Object visitExpressionBoolean(ExpressionBooleanContext ctx) {
+        visit(ctx.bool_expressn(0));
+        intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
+        visit(ctx.bool_expressn(1));
+        intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
+
+        switch(ctx.op.getType()) {
+            case DesiGrammarParser.ISEquals:
+                intermediateCodeGenerator.addIntermediateOutput("BOOL_ISEQUALS ACC A B");
+                break;
+            case DesiGrammarParser.NotEquals:
+                intermediateCodeGenerator.addIntermediateOutput("BOOL_IS_NOT_EQUALS ACC A B");
+                break;
+        }
+        return null;
+    }
+    
+    @Override
+    public Object visitExpressionBooleanParentheses(ExpressionBooleanParenthesesContext ctx) {
+        visit(ctx.bool_expressn());
+        return null;
+    }
+	
+
 }
 
