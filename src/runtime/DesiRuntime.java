@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 public class DesiRuntime implements DesiRuntimeConstants{
 	
 	private Stack<HashMap<String, DataValues>> memoryStack = new Stack<>();
@@ -31,8 +29,8 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	        	programCounter = executeInstructionHandler(intermediateCode.get(programCounter), programCounter) + 1;
 
 	        }
-
-	        System.out.println();
+System.out.println();
+	        System.out.println("output : "+this.output);
 	    }
 
 
@@ -45,11 +43,29 @@ public class DesiRuntime implements DesiRuntimeConstants{
         case STORE_INSTRUCTION:
             executeStoreInstruction(instructions);
             break;
+        case WRITE_INSTRUCTION:
+        	executePrintInstruction(instructions);
+        	break;
 	    }
 	    
 		return programCounter;
 	}
 
+	    private void executePrintInstruction(String[] instruction) {
+	    	DataValues printData = getWildCardValue(instruction[1]);
+
+	        if (null != printData) {
+	            try {
+	                generateOutput(printData.toString());
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	    
+	    private void generateOutput (String output) {
+	        this.output += output + "\n";
+	    }
 
 
 	    private void initializeStackMemory() {
@@ -87,7 +103,10 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    
 	    private boolean isBoolean(String value) {
 	        try {
-	        	Boolean.parseBoolean(value);
+	        	Boolean b = Boolean.parseBoolean(value);
+	        	if(!b && !value.equalsIgnoreCase("FALSE")) {
+	        		 return false;
+	        	}
 	            return true;
 	        } catch (NumberFormatException e) {
 	            return false;
