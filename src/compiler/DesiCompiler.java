@@ -11,8 +11,10 @@ import desi.DesiGrammarParser.ExpressionNumberComparisonContext;
 import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberMultiplyDivideContext;
 import desi.DesiGrammarParser.ExpressionNumberOnlyContext;
+import desi.DesiGrammarParser.ExpressionNumberParenthesesContext;
 import desi.DesiGrammarParser.ExpressionNumberPlusMinusContext;
 import desi.DesiGrammarParser.IfExpressnContext;
+import desi.DesiGrammarParser.PrintContext;
 import desi.DesiGrammarParser.ProgramContext;
 import desi.DesiGrammarParser.WhileExpressnContext;
 import runtime.DesiRuntimeConstants;
@@ -192,16 +194,16 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitExpressionBooleanConnector(ExpressionBooleanConnectorContext ctx) {
 		visit(ctx.bool_expressn(0));
-        intermediateCodeGenerator.addIntermediateOutput("LOAD A REG");
+        intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
         visit(ctx.bool_expressn(1));
-        intermediateCodeGenerator.addIntermediateOutput("LOAD B REG");
+        intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
 
         switch(ctx.op.getType()) {
             case DesiGrammarParser.AND:
-            	intermediateCodeGenerator.addIntermediateOutput("AND REG A B");
+            	intermediateCodeGenerator.addIntermediateOutput("AND ACC A B");
                 break;
             case DesiGrammarParser.OR:
-            	intermediateCodeGenerator.addIntermediateOutput("OR REG A B");
+            	intermediateCodeGenerator.addIntermediateOutput("OR ACC A B");
                 break;
         }
 		return null; 
@@ -211,30 +213,61 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitExpressionNumberComparison(ExpressionNumberComparisonContext ctx) {
 		visit(ctx.num_expressn(0));
-		intermediateCodeGenerator.addIntermediateOutput("SAVE A REG");
+		intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
 		visit(ctx.num_expressn(1));
-		intermediateCodeGenerator.addIntermediateOutput("SAVE B REG");
+		intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
 		
 		switch(ctx.op.getType()) {
 			case DesiGrammarParser.GREATER:
-				intermediateCodeGenerator.addIntermediateOutput("GREATER REG A B");
+				intermediateCodeGenerator.addIntermediateOutput("GREATER ACC A B");
 				break;
 			case DesiGrammarParser.MORE_or_EQU:
-				intermediateCodeGenerator.addIntermediateOutput("GREATER_OR_EQUAL REG A B");
+				intermediateCodeGenerator.addIntermediateOutput("GREATER_OR_EQUAL ACC A B");
 				break;
 			case DesiGrammarParser.LESSER:
-				intermediateCodeGenerator.addIntermediateOutput("LESSER REG A B");
+				intermediateCodeGenerator.addIntermediateOutput("LESSER ACC A B");
 				break;
 			case DesiGrammarParser.LESS_or_EQU:
-				intermediateCodeGenerator.addIntermediateOutput("LESSER_OR_EQUAL REG A B");
+				intermediateCodeGenerator.addIntermediateOutput("LESSER_OR_EQUAL ACC A B");
 				break;
 			case DesiGrammarParser.ISEquals:
-				intermediateCodeGenerator.addIntermediateOutput("EQUAL_TO REG A B");
+				intermediateCodeGenerator.addIntermediateOutput("EQUAL_TO ACC A B");
 				break;
 			case DesiGrammarParser.NotEquals:
-				intermediateCodeGenerator.addIntermediateOutput("NOT_EQUAL_TO REG A B");
+				intermediateCodeGenerator.addIntermediateOutput("NOT_EQUAL_TO ACC A B");
 				break;
 		}
+		return null; 
+	}
+	
+	
+	@Override
+	public Object visitExpressionNumberParentheses(ExpressionNumberParenthesesContext ctx) {
+		visit(ctx.num_expressn());
+		return null;
+	}
+	
+	
+	@Override
+	public Object visitPrint(PrintContext ctx) {
+		
+		if(ctx.IDENTIFIER() != null) {
+			intermediateCodeGenerator.addIntermediateOutput("DISPLAY " + ctx.IDENTIFIER().getText());
+        }
+        else if(ctx.DIGITS() != null) {
+        	intermediateCodeGenerator.addIntermediateOutput("DISPLAY " + ctx.DIGITS().getText());            
+        }
+        else if(ctx.BOOLEAN() != null) {
+        	intermediateCodeGenerator.addIntermediateOutput("DISPLAY " + ctx.BOOLEAN().getText());
+        }
+        else if(ctx.num_expressn() != null) {
+            visit(ctx.num_expressn());
+            intermediateCodeGenerator.addIntermediateOutput("DISPLAY ACC");
+        }
+        else if(ctx.bool_expressn() != null) {
+            visit(ctx.bool_expressn());
+            intermediateCodeGenerator.addIntermediateOutput("DISPLAY ACC");
+        }
 		return null; 
 	}
 }
