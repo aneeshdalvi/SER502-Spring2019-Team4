@@ -30,7 +30,7 @@ public class DesiRuntimeMain {
 	            DesiRuntime runtime = new DesiRuntime(code.toString());
 	            runtime.execute();
 	            writer.println("Output of the program ");
-	            writer.println(runtime.getOutput());
+	            writer.println(runtime.getOutputData());
 	        }
 	        catch(Exception e) {
 	        	e.printStackTrace();
