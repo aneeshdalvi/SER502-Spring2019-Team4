@@ -6,8 +6,6 @@ import java.io.PrintWriter;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 public class DesiRuntimeMain {
 	
 	public static void main(String[] args) throws IOException {
@@ -31,10 +29,13 @@ public class DesiRuntimeMain {
 
 	            DesiRuntime runtime = new DesiRuntime(code.toString());
 	            runtime.execute();
+	            writer.println("Output of the program ");
+	            writer.println(runtime.getOutput());
 	        }
 	        catch(Exception e) {
 	        	e.printStackTrace();
 	        }
+	        writer.close();
 		
 	}
 

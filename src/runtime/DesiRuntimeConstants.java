@@ -25,9 +25,9 @@ public interface DesiRuntimeConstants {
 	public static final String WRITE_INSTRUCTION = "PRINT";
 
 	public static final String ADD_INSTRUCTION = "ADD";
-	public static final String SUBTRACT_INSTRUCTION = "SUB";
-	public static final String MULTIPLY_INSTRUCTION = "MUL";
-	public static final String DIVIDE_INSTRUCTION = "DIV";
+	public static final String SUB_INSTRUCTION = "SUB";
+	public static final String MUL_INSTRUCTION = "MUL";
+	public static final String DIV_INSTRUCTION = "DIV";
 
 	public static final String UNARY_MINUS = "UNARY";
 

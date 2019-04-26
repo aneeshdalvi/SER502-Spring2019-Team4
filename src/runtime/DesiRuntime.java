@@ -29,8 +29,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	        	programCounter = executeInstructionHandler(intermediateCode.get(programCounter), programCounter) + 1;
 
 	        }
-System.out.println();
-	        System.out.println("output : "+this.output);
+
 	    }
 
 
@@ -46,12 +45,41 @@ System.out.println();
         case WRITE_INSTRUCTION:
         	executePrintInstruction(instructions);
         	break;
+        	
+        case ADD_INSTRUCTION:
+        case SUB_INSTRUCTION:
+        case MUL_INSTRUCTION:
+        case DIV_INSTRUCTION:
+            executeArithmeticOperations(instructions);
+            break;
 	    }
 	    
 		return programCounter;
 	}
 
-	    private void executePrintInstruction(String[] instruction) {
+	    private void executeArithmeticOperations(String[] instruction) {
+	    	int firstOperand = getWildCardValue(instruction[2]).asInt();
+	    	int secondOperand = getWildCardValue(instruction[3]).asInt();
+	    	
+	    	switch(instruction[0]) {
+            case ADD_INSTRUCTION:
+                setValue(instruction[1], new DataValues(firstOperand + secondOperand));
+                break;
+            case SUB_INSTRUCTION:
+                setValue(instruction[1], new DataValues(firstOperand - secondOperand));
+                break;
+            case MUL_INSTRUCTION:
+                setValue(instruction[1], new DataValues(firstOperand * secondOperand));
+                break;
+            case DIV_INSTRUCTION:
+                setValue(instruction[1], new DataValues(firstOperand / secondOperand));
+                break;
+        }
+	    	
+		}
+
+
+		private void executePrintInstruction(String[] instruction) {
 	    	DataValues printData = getWildCardValue(instruction[1]);
 
 	        if (null != printData) {
@@ -118,6 +146,9 @@ System.out.println();
 	        return hashMap.get(identifier);
 	    }
 
+	    public String getOutput() {
+	        return this.output;
+	    }
 	    
 	    private DataValues getWildCardValue(String value) {
 	        if(value.equals("NULL")) {
