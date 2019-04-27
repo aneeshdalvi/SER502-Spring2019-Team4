@@ -1,12 +1,32 @@
+
 shuru
-    int a =5
-    agar (a == 6)
+    int a = 9
+    int b = 5
+        
+    agar (a > b)
         shuru
-        	a = a*1
+            jabtak (b < a) 
+                shuru
+                    agar (a == 7)
+                        shuru
+                            dikhao (a)
+                        khatam
+                    bas
+                
+                    dikhao (b)
+                    b = b + 1  
+                khatam 
+            tabtak
+        khatam 
+    magar (a == b)
+        shuru 
+            b = b + 2
+            dikhao (b)
         khatam
     nahitoh
-        shuru
-        	a = a+2
+        shuru 
+            a = a * 2
+            dikhao (a)
         khatam
-    bas
+    bas 
 khatam
