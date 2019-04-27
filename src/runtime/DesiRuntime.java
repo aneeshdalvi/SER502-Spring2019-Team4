@@ -65,13 +65,13 @@ public class DesiRuntime implements DesiRuntimeConstants{
         	
         	 
         case IF_SHURU:
-            programCounter = executeIf(programCounter);
+            programCounter = executeIf(++programCounter);
             break;
         case ELSE_IF_SHURU:
-        	programCounter = executeElseIf(programCounter);
+        	programCounter = executeElseIf(++programCounter);
             break;
         case ELSE_SHURU:
-            programCounter = executeElse(programCounter);
+            programCounter = executeElse(++programCounter);
             break;	
        
 	    }
