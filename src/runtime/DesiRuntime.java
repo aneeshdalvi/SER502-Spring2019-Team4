@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 public class DesiRuntime implements DesiRuntimeConstants{
 	
 	private Stack<HashMap<String, DataValues>> memoryStack = new Stack<>();
@@ -32,7 +30,6 @@ public class DesiRuntime implements DesiRuntimeConstants{
 
 	        }
 
-	        System.out.println();
 	    }
 
 
@@ -45,11 +42,95 @@ public class DesiRuntime implements DesiRuntimeConstants{
         case STORE_INSTRUCTION:
             executeStoreInstruction(instructions);
             break;
+        case WRITE_INSTRUCTION:
+        	executePrintInstruction(instructions);
+        	break;
+        	
+        case ADD_INSTRUCTION:
+        case SUB_INSTRUCTION:
+        case MUL_INSTRUCTION:
+        case DIV_INSTRUCTION:
+            executeArithmeticOperations(instructions);
+            break;
+            
+        // All Comparison Operations
+        case GREATER_THAN:
+        case GREATER_THAN_EQUAL:
+    	case LESS_THAN:
+    	case LESS_THAN_EQUAL:
+    	case EQUAL_EQUAL:
+    	case NOT_EQUAL:
+        	executeBooleanComparisonOperations(instructions);
+        	break;
 	    }
 	    
 		return programCounter;
 	}
 
+	    private void executeBooleanComparisonOperations(String[] instruction) {
+	    	int leftOperand = getValue(instruction[2]).asInt();
+	    	int rightOperand = getValue(instruction[3]).asInt();
+	    	
+	    	switch(instruction[0]) {
+		    	case GREATER_THAN:
+		    		setValue(instruction[1], new DataValues(leftOperand > rightOperand));
+		    		break;
+		    	case GREATER_THAN_EQUAL:
+		    		setValue(instruction[1], new DataValues(leftOperand >= rightOperand));
+		    		break;
+		    	case LESS_THAN:
+		    		setValue(instruction[1], new DataValues(leftOperand < rightOperand));
+		    		break;
+		    	case LESS_THAN_EQUAL:
+		    		setValue(instruction[1], new DataValues(leftOperand <= rightOperand));
+		    		break;
+		    	case EQUAL_EQUAL:
+		    		setValue(instruction[1], new DataValues(leftOperand == rightOperand));
+		    		break;
+		    	case NOT_EQUAL:
+		    		setValue(instruction[1], new DataValues(leftOperand != rightOperand));
+		    		break;        
+	    	}
+	    	
+	    }
+
+		private void executeArithmeticOperations(String[] instruction) {
+	    	int leftOperand = getWildCardValue(instruction[2]).asInt();
+	    	int rightOperand = getWildCardValue(instruction[3]).asInt();
+	    	
+	    	switch(instruction[0]) {
+            case ADD_INSTRUCTION:
+                setValue(instruction[1], new DataValues(leftOperand + rightOperand));
+                break;
+            case SUB_INSTRUCTION:
+                setValue(instruction[1], new DataValues(leftOperand - rightOperand));
+                break;
+            case MUL_INSTRUCTION:
+                setValue(instruction[1], new DataValues(leftOperand * rightOperand));
+                break;
+            case DIV_INSTRUCTION:
+                setValue(instruction[1], new DataValues(leftOperand / rightOperand));
+                break;
+        }
+	    	
+		}
+
+
+		private void executePrintInstruction(String[] instruction) {
+	    	DataValues printData = getWildCardValue(instruction[1]);
+
+	        if (null != printData) {
+	            try {
+	                generateOutput(printData.toString());
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	    
+	    private void generateOutput (String output) {
+	        this.output += output + "\n";
+	    }
 
 
 	    private void initializeStackMemory() {
@@ -87,7 +168,10 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    
 	    private boolean isBoolean(String value) {
 	        try {
-	        	Boolean.parseBoolean(value);
+	        	Boolean b = Boolean.parseBoolean(value);
+	        	if(!b && !value.equalsIgnoreCase("FALSE")) {
+	        		 return false;
+	        	}
 	            return true;
 	        } catch (NumberFormatException e) {
 	            return false;
@@ -99,6 +183,9 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	        return hashMap.get(identifier);
 	    }
 
+	    public String getOutputData() {
+	        return this.output;
+	    }
 	    
 	    private DataValues getWildCardValue(String value) {
 	        if(value.equals("NULL")) {

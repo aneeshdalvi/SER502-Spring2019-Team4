@@ -10,7 +10,6 @@ public class DesiRuntimeMain {
 	
 	public static void main(String[] args) throws IOException {
 		
-		
 		 String inputFile = "DesiArithmeticExpr.vdesi";
 
 	        String inputPath = "./src/data/";
@@ -30,10 +29,13 @@ public class DesiRuntimeMain {
 
 	            DesiRuntime runtime = new DesiRuntime(code.toString());
 	            runtime.execute();
+	            writer.println("Output of the program ");
+	            writer.println(runtime.getOutputData());
 	        }
 	        catch(Exception e) {
 	        	e.printStackTrace();
 	        }
+	        writer.close();
 		
 	}
 
