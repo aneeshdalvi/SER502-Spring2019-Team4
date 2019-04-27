@@ -25,17 +25,17 @@ public interface DesiRuntimeConstants {
 	public static final String READ_INSTRUCTION = "READ";
 	public static final String WRITE_INSTRUCTION = "PRINT";
 
-	public static final String ADDITION = "ADD";
-	public static final String SUBTRACTION = "SUB";
-	public static final String MULTIPLICATION = "MUL";
-	public static final String DIVISION = "DIV";
+	public static final String ADDITION = "JODNA";
+	public static final String SUBTRACTION = "GHATANA";
+	public static final String MULTIPLICATION = "GUNAKAR";
+	public static final String DIVISION = "VIBHAJNA";
 
 	public static final String UNARY_MINUS = "UNARY";
 
-	public static final String GREATER_THAN = "GREATERTHAN";
-	public static final String GREATER_THAN_EQUAL = "GREATER_OR_EQUAL";
-	public static final String LESS_THAN = "LESSTHAN";
-	public static final String LESS_THAN_EQUAL= "LESSER_OR_EQUAL";
+	public static final String GT = "GT";
+	public static final String GTE = "GTE";
+	public static final String LT = "LT";
+	public static final String LTE= "LTE";
 	public static final String EQUAL_EQUAL = "EQUAL_TO";
 	public static final String NOT_EQUAL = "NOT_EQUAL_TO";
 
@@ -46,11 +46,11 @@ public interface DesiRuntimeConstants {
 	public static final String BOOLEAN_NOT_EQUAL = "BOOL_IS_NOT_EQUALS";
 
 
-	public static final String CONDITION_START = "CONDITION_START";
-	public static final String CONDITION_END = "CONDITION_END";
+	public static final String CONDITION_SHURU = "CONDITION_SHURU";
+	public static final String CONDITION_KHATAM = "CONDITION_KHATAM";
 
-	public static final String WHILE_START = "WHILE_START";
-	public static final String WHILE_END = "WHILE_END";
+	public static final String WHILE_SHURU = "WHILE_SHURU";
+	public static final String WHILE_KHATAM = "WHILE_KHATAM";
 
 
 }

@@ -54,10 +54,10 @@ public class DesiRuntime implements DesiRuntimeConstants{
             break;
             
         // All Comparison Operations
-        case GREATER_THAN:
-        case GREATER_THAN_EQUAL:
-    	case LESS_THAN:
-    	case LESS_THAN_EQUAL:
+        case GT:
+        case GTE:
+    	case LT:
+    	case LTE:
     	case EQUAL_EQUAL:
     	case NOT_EQUAL:
         	executeBooleanComparisonOperations(instructions);
@@ -72,16 +72,16 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    	int rightOperand = getValue(instruction[3]).asInt();
 	    	
 	    	switch(instruction[0]) {
-		    	case GREATER_THAN:
+		    	case GT:
 		    		setValue(instruction[1], new DataValues(leftOperand > rightOperand));
 		    		break;
-		    	case GREATER_THAN_EQUAL:
+		    	case GTE:
 		    		setValue(instruction[1], new DataValues(leftOperand >= rightOperand));
 		    		break;
-		    	case LESS_THAN:
+		    	case LT:
 		    		setValue(instruction[1], new DataValues(leftOperand < rightOperand));
 		    		break;
-		    	case LESS_THAN_EQUAL:
+		    	case LTE:
 		    		setValue(instruction[1], new DataValues(leftOperand <= rightOperand));
 		    		break;
 		    	case EQUAL_EQUAL:
