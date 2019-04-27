@@ -135,10 +135,10 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitExpressionNumberIdentifierOnly(ExpressionNumberIdentifierOnlyContext ctx) {
 		String identifier = ctx.IDENTIFIER().getText();
-		intermediateCodeGenerator.addIntermediateOutput("LOAD ACC " + identifier);
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER + " "  + identifier);
 		if(ctx.SUB() != null)
 		{
-			intermediateCodeGenerator.addIntermediateOutput("UNARY ACC");
+			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.UNARY_MINUS + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		}
 		return null;
 	}
@@ -150,7 +150,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		if(ctx.SUB() != null) {
 			doubleValue = -doubleValue;
 		}
-		intermediateCodeGenerator.addIntermediateOutput("LOAD ACC "+ doubleValue);
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER +" "+ doubleValue);
 		return null; 
 	}
 	
