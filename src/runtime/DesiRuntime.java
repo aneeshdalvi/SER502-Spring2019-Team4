@@ -73,6 +73,15 @@ public class DesiRuntime implements DesiRuntimeConstants{
             programCounter = executeElse(programCounter);
             break;	
        
+            
+        case WHILE_SHURU:
+        	programCounter = executeWhile(++programCounter);
+        	break;
+        	
+        
+       
+   
+            
 	    }
 	    
 		return programCounter;
@@ -193,6 +202,21 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	        HashMap<String, DataValues> hashMap = memoryStack.peek();
 	        return hashMap.get(identifier);
 	    }
+	    
+	    private int executeWhile(int whileStartCounter) {
+	        int counter;
+	        while(true) {
+	            counter = executionBlock(whileStartCounter, CONDITION_KHATAM);
+	            if(getValue(ACCUMULATOR_REGISTER).asBoolean()) {
+	            	executionBlock(counter, WHILE_KHATAM);
+	            }
+	            else {
+	                counter = executionBlock(counter, WHILE_KHATAM);
+	                break;
+	            }
+	        }
+	        return counter;
+	    }
 
 	    public String getOutputData() {
 	        return this.output;
@@ -221,7 +245,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	                break;
 	            }
 	            else {
-	                    programCounter = executeInstructionHandler(instruction, programCounter);                
+	                    programCounter = executeInstructionHandler(instruction, programCounter)+1;                
 	            }
 	        }
 	        return programCounter;
