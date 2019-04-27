@@ -60,8 +60,9 @@ public class DesiRuntime implements DesiRuntimeConstants{
     	case LTE:
     	case EQUAL_EQUAL:
     	case NOT_EQUAL:
-        	executeBooleanComparisonOperations(instructions);
+    		 executeBooleanComparisonOperations(instructions);
         	break;
+        	
         	
         	 
         case IF_SHURU:
@@ -73,7 +74,8 @@ public class DesiRuntime implements DesiRuntimeConstants{
         case ELSE_SHURU:
             programCounter = executeElse(++programCounter);
             break;	
-       
+            
+            
             
         case WHILE_SHURU:
         	programCounter = executeWhile(++programCounter);
@@ -112,7 +114,6 @@ public class DesiRuntime implements DesiRuntimeConstants{
 		    		setValue(instruction[1], new DataValues(leftOperand != rightOperand));
 		    		break;        
 	    	}
-	    	
 	    }
 
 		private void executeArithmeticOperations(String[] instruction) {
@@ -207,12 +208,20 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    private int executeWhile(int whileStartCounter) {
 	        int counter;
 	        while(true) {
-	            counter = executionBlock(whileStartCounter, CONDITION_KHATAM);
-	            if(getValue(ACCUMULATOR_REGISTER).asBoolean()) {
-	            	executionBlock(counter, WHILE_KHATAM);
+	            counter = executionBlock(whileStartCounter, CONDITION_KHATAM,false);
+	            boolean b= getValue(ACCUMULATOR_REGISTER).asBoolean();
+	            System.out.println();
+	            System.out.println(b + " " + counter);
+	            System.out.println();
+	            if(b) {
+	            	counter = executionBlock(counter, WHILE_KHATAM,false);
+	            	System.out.println();
+	            	System.out.println("if true : "+ counter);
+	            	System.out.println();
 	            }
 	            else {
-	                counter = executionBlock(counter, WHILE_KHATAM);
+	                counter = executionBlock(counter, WHILE_KHATAM,true);
+	            	//System.out.println("executing else for b.");
 	                break;
 	            }
 	        }
@@ -239,46 +248,52 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    }
 	    
 	    
-	    private int executionBlock(int programCounter, String stopCond) {
+	    private int executionBlock(int programCounter, String stopCond,boolean skipLastConditionCheck) {
 	        while(programCounter >= 0) {
 	            String instruction = intermediateCode.get(programCounter);
 	            if (instruction.equals(stopCond)) {
 	                break;
 	            }
 	            else {
-	                    programCounter = executeInstructionHandler(instruction, programCounter)+1;                
+	            	if(!skipLastConditionCheck) {
+	            		programCounter = executeInstructionHandler(instruction, programCounter);
+	            	}
+	            	programCounter = programCounter +1;                
 	            }
 	        }
 	        return programCounter;
 	    }
 	    
+	    
+	    
 	    private int executeIf(int programCounter) {
-	    	programCounter = executionBlock(programCounter, CONDITION_KHATAM);
+	    	programCounter = executionBlock(programCounter, CONDITION_KHATAM,false);
 	    	if(getValue(ACCUMULATOR_REGISTER).asBoolean()){
-	    		programCounter = executionBlock(programCounter, IF_KHATAM);
-	    		programCounter = executionBlock(programCounter, IF_ELSE_KHATAM);
+	    		programCounter = executionBlock(programCounter, IF_KHATAM,false);
+	    		programCounter = executionBlock(programCounter, IF_ELSE_KHATAM,true);
 	    	} else {
-	    		programCounter = executionBlock(programCounter, IF_KHATAM);
+	    		programCounter = executionBlock(programCounter, IF_KHATAM,true);
 	    	}
 	    	return programCounter;
 	    }
 	    
 	    
 	    private int executeElse(int programCounter) {
-	    	programCounter = executionBlock(programCounter, ELSE_KHATAM);
+	    	programCounter = executionBlock(programCounter, ELSE_KHATAM,false);
 	     	return programCounter;
 	    }
 	    
 	    
 	    private int executeElseIf(int programCounter) {
-	    	programCounter = executionBlock(programCounter, CONDITION_KHATAM);
+	    	programCounter = executionBlock(programCounter, CONDITION_KHATAM,false);
 	    	if(getValue(ACCUMULATOR_REGISTER).asBoolean()){
-	    		programCounter = executionBlock(programCounter, ELSE_IF_KHATAM);
-	    		programCounter = executionBlock(programCounter, IF_ELSE_KHATAM);
+	    		programCounter = executionBlock(programCounter, ELSE_IF_KHATAM,false);
+	    		programCounter = executionBlock(programCounter, IF_ELSE_KHATAM,true);
 	    	} else {
-	    		programCounter = executionBlock(programCounter, ELSE_IF_KHATAM);
+	    		programCounter = executionBlock(programCounter, ELSE_IF_KHATAM,true);
 	    	}
 	    	return programCounter;
 	    }
+	    
 	    
 }
