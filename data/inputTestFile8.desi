@@ -1,0 +1,49 @@
+shuru
+    int a = 9
+    int b = 5
+    int c = 2
+
+    agar (a < b)
+        shuru
+            jabtak (b > c) 
+                shuru
+                    agar (c == 4)
+                        shuru
+                            dikhao (a)
+                        khatam
+                    bas        
+                    dikhao (b)
+                    c = c + 1  
+                khatam 
+            tabtak
+        khatam
+    magar (a == b)
+        shuru 
+           jabtak (b > c) 
+                shuru
+                    agar (c == 4)
+                        shuru
+                            dikhao (a)
+                        khatam
+                    bas        
+                    dikhao (b)
+                    c = c + 1  
+                khatam 
+            tabtak
+        khatam
+    nahitoh
+        shuru 
+             jabtak (b > c) 
+                shuru
+                    agar (c == 4)
+                        shuru
+                            dikhao (99)
+                        khatam
+                    bas        
+                    dikhao (299)
+                    c = c + 1  
+                khatam 
+            tabtak
+        khatam
+    bas
+khatam
