@@ -68,7 +68,8 @@ public class DesiRuntime implements DesiRuntimeConstants{
             programCounter = executeIf(programCounter);
             break;
         case ELSE_IF_SHURU:
-       
+        	programCounter = executeElseIf(programCounter);
+            break;
         case ELSE_SHURU:
             programCounter = executeElse(programCounter);
             break;	
@@ -242,6 +243,18 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    private int executeElse(int programCounter) {
 	    	programCounter = executionBlock(programCounter, ELSE_KHATAM);
 	     	return programCounter;
+	    }
+	    
+	    
+	    private int executeElseIf(int programCounter) {
+	    	programCounter = executionBlock(programCounter, CONDITION_KHATAM);
+	    	if(getValue(ACCUMULATOR_REGISTER).asBoolean()){
+	    		programCounter = executionBlock(programCounter, ELSE_IF_KHATAM);
+	    		programCounter = executionBlock(programCounter, IF_ELSE_KHATAM);
+	    	} else {
+	    		programCounter = executionBlock(programCounter, ELSE_IF_KHATAM);
+	    	}
+	    	return programCounter;
 	    }
 	    
 }
