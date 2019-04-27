@@ -77,10 +77,21 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	
 	@Override
 	public Object visitExpressionNumberPlusMinus(ExpressionNumberPlusMinusContext ctx) {
-		visit(ctx.num_expressn(0));
+		
+		int tree_one = 1;
+		int tree_two = 0;
+		
+		if(!(ctx.num_expressn(1).getChildCount() > 2))
+		{
+			tree_one = 0;
+			tree_two = 1;
+		}
+		
+		visit(ctx.num_expressn(tree_one));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
 		DesiRuntimeConstants.REGISTER_TWO + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
-		visit(ctx.num_expressn(1));
+		
+		visit(ctx.num_expressn(tree_two));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
 				DesiRuntimeConstants.REGISTER_THREE + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
@@ -92,7 +103,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 						DesiRuntimeConstants.REGISTER_THREE);
 				break;
 			case DesiGrammarParser.SUB:
-				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.DIVISION +" " +
+				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.SUBTRACTION +" " +
 						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
 						DesiRuntimeConstants.REGISTER_TWO + " " +
 						DesiRuntimeConstants.REGISTER_THREE);
@@ -106,16 +117,27 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	public Object visitExpressionNumberMultiplyDivide(ExpressionNumberMultiplyDivideContext ctx) {
 //		System.out.println(ctx.getText());
 
-		visit(ctx.num_expressn(0));
+		int tree_one = 1;
+		int tree_two = 0;
+		
+		if(!(ctx.num_expressn(1).getChildCount() > 2))
+		{
+			tree_one = 0;
+			tree_two = 1;
+		}
+		
+		
+		visit(ctx.num_expressn(tree_one));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
 				DesiRuntimeConstants.REGISTER_TWO + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
-		visit(ctx.num_expressn(1));
+		
+		visit(ctx.num_expressn(tree_two));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
 				DesiRuntimeConstants.REGISTER_THREE + " " +DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		switch(ctx.op.getType()) {
 			case DesiGrammarParser.MUL:
-				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ADDITION +" " +
+				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.MULTIPLICATION +" " +
 						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
 						DesiRuntimeConstants.REGISTER_TWO + " " +
 						DesiRuntimeConstants.REGISTER_THREE);
@@ -146,11 +168,11 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitExpressionNumberOnly(ExpressionNumberOnlyContext ctx) {
 		String value = ctx.DIGITS().getText();
-		Double doubleValue = Double.parseDouble(value);
+		Integer integerValue = Integer.parseInt(value);
 		if(ctx.SUB() != null) {
-			doubleValue = -doubleValue;
+			integerValue = -integerValue;
 		}
-		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER +" "+ doubleValue);
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER +" "+ integerValue);
 		return null; 
 	}
 	
