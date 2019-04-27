@@ -64,11 +64,13 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		{
 			//if initialization and assignment done in the same statement
 			visit(ctx.num_expressn());
-			intermediateCodeGenerator.addIntermediateOutput("LOAD " + indentifier + " ACC");
+			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
+			indentifier + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		}
 		else {
 			//if no assignment to the variable is done. Default value is can be 0
-			intermediateCodeGenerator.addIntermediateOutput("LOAD " + indentifier + " NULL");
+			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
+			indentifier + " " + DesiRuntimeConstants.NULL_STR);
 		}
 		return null;
 	}
@@ -76,16 +78,24 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitExpressionNumberPlusMinus(ExpressionNumberPlusMinusContext ctx) {
 		visit(ctx.num_expressn(0));
-		intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
+		DesiRuntimeConstants.SECOND_REGISTER + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		visit(ctx.num_expressn(1));
-		intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
+				DesiRuntimeConstants.THIRD_REGISTER + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		switch(ctx.op.getType()) {
 			case DesiGrammarParser.ADD:
-				intermediateCodeGenerator.addIntermediateOutput("ADD ACC A B");
+				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ADD_INSTRUCTION +" " +
+						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
+						DesiRuntimeConstants.SECOND_REGISTER + " " +
+						DesiRuntimeConstants.THIRD_REGISTER);
 				break;
 			case DesiGrammarParser.SUB:
-				intermediateCodeGenerator.addIntermediateOutput("SUB ACC B A");
+				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.SUBTRACT_INSTRUCTION +" " +
+						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
+						DesiRuntimeConstants.SECOND_REGISTER + " " +
+						DesiRuntimeConstants.THIRD_REGISTER);
 				break;
 		}
 		return null; 
@@ -97,16 +107,24 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 //		System.out.println(ctx.getText());
 
 		visit(ctx.num_expressn(0));
-		intermediateCodeGenerator.addIntermediateOutput("LOAD A ACC");
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
+				DesiRuntimeConstants.SECOND_REGISTER + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		visit(ctx.num_expressn(1));
-		intermediateCodeGenerator.addIntermediateOutput("LOAD B ACC");
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
+				DesiRuntimeConstants.THIRD_REGISTER + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		switch(ctx.op.getType()) {
 			case DesiGrammarParser.MUL:
-				intermediateCodeGenerator.addIntermediateOutput("MUL ACC A B");
+				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ADD_INSTRUCTION +" " +
+						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
+						DesiRuntimeConstants.SECOND_REGISTER + " " +
+						DesiRuntimeConstants.THIRD_REGISTER);
 				break;
 			case DesiGrammarParser.DIV:
-				intermediateCodeGenerator.addIntermediateOutput("DIV ACC C B");
+				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.DIVIDE_INSTRUCTION +" " +
+						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
+						DesiRuntimeConstants.SECOND_REGISTER + " " +
+						DesiRuntimeConstants.THIRD_REGISTER);
 				break;
 		}
 

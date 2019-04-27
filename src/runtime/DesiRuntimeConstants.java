@@ -11,6 +11,7 @@ public interface DesiRuntimeConstants {
 	public static final String ELSE_IF_END = "ELSE_IF_END";
 	public static final String ELSE_START = "ELSE_START";
 	public static final String ELSE_END = "ELSE_END";
+	public static final String NULL_STR = "NULL";
 
 
 	public static final String COMPARISION_START = "COMPARISION_START";
