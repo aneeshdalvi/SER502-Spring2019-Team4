@@ -1,0 +1,18 @@
+shuru
+    int a =9
+    int b =5
+    jabtak (b < a)
+        shuru
+            agar (b == 7)
+                shuru
+                    dikhao (b)
+                khatam
+            nahitoh
+                shuru
+                    dikhao (100)
+                khatam
+            bas
+            b = b + 1
+        khatam
+    tabtak
+khatam
