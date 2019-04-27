@@ -92,7 +92,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 						DesiRuntimeConstants.THIRD_REGISTER);
 				break;
 			case DesiGrammarParser.SUB:
-				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.SUBTRACT_INSTRUCTION +" " +
+				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.DIV_INSTRUCTION +" " +
 						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
 						DesiRuntimeConstants.SECOND_REGISTER + " " +
 						DesiRuntimeConstants.THIRD_REGISTER);
@@ -121,7 +121,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 						DesiRuntimeConstants.THIRD_REGISTER);
 				break;
 			case DesiGrammarParser.DIV:
-				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.DIVIDE_INSTRUCTION +" " +
+				intermediateCodeGenerator.addIntermediateOutput( DesiRuntimeConstants.DIV_INSTRUCTION +" " +
 						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
 						DesiRuntimeConstants.SECOND_REGISTER + " " +
 						DesiRuntimeConstants.THIRD_REGISTER);
