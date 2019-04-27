@@ -18,8 +18,9 @@ public interface DesiRuntimeConstants {
 	public static final String COMPARISION_KHATAM = "COMPARISION_KHATAM";
 
 	public static final String ACCUMULATOR_REGISTER = "ACC";
-	public static final String REGISTER_TWO = "C";
-	public static final String REGISTER_THREE = "B";
+	public static final String REGISTER_TWO = "B";
+	public static final String REGISTER_THREE = "C";
+	public static final String REGISTER_FOUR = "D";
 
 	public static final String STORE_INSTRUCTION = "LOAD";
 	public static final String READ_INSTRUCTION = "READ";

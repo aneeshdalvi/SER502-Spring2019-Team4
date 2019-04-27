@@ -81,32 +81,45 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		int tree_one = 1;
 		int tree_two = 0;
 		
-		if(!(ctx.num_expressn(1).getChildCount() > 2))
+		String reg1 = "";
+		String reg2 = "";
+		
+		if(!(ctx.num_expressn(1).getChildCount() > ctx.num_expressn(0).getChildCount()))
 		{
 			tree_one = 0;
 			tree_two = 1;
 		}
 		
+		
+		if(!((ctx.num_expressn(1).getChildCount() > 2) && (ctx.num_expressn(0).getChildCount() > 2)))
+		{
+			reg1 = DesiRuntimeConstants.REGISTER_THREE;
+			reg2 = DesiRuntimeConstants.REGISTER_FOUR;
+		}
+		else
+		{
+			reg1 = DesiRuntimeConstants.REGISTER_TWO;
+			reg2 = DesiRuntimeConstants.REGISTER_THREE;
+		}
+		
 		visit(ctx.num_expressn(tree_one));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-		DesiRuntimeConstants.REGISTER_TWO + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+				reg1 + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		visit(ctx.num_expressn(tree_two));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-				DesiRuntimeConstants.REGISTER_THREE + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+				reg2 + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		switch(ctx.op.getType()) {
 			case DesiGrammarParser.ADD:
 				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ADDITION +" " +
 						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
-						DesiRuntimeConstants.REGISTER_TWO + " " +
-						DesiRuntimeConstants.REGISTER_THREE);
+						reg1 + " " + reg2);
 				break;
 			case DesiGrammarParser.SUB:
 				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.SUBTRACTION +" " +
 						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
-						DesiRuntimeConstants.REGISTER_TWO + " " +
-						DesiRuntimeConstants.REGISTER_THREE);
+						reg1 + " " + reg2);
 				break;
 		}
 		return null; 
@@ -117,43 +130,54 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	public Object visitExpressionNumberMultiplyDivide(ExpressionNumberMultiplyDivideContext ctx) {
 //		System.out.println(ctx.getText());
 
+		String reg1 = "";
+		String reg2 = "";
+		
 		int tree_one = 1;
 		int tree_two = 0;
 		
-		if(!(ctx.num_expressn(1).getChildCount() > 2))
+		if(!(ctx.num_expressn(1).getChildCount() > ctx.num_expressn(0).getChildCount()))
 		{
 			tree_one = 0;
 			tree_two = 1;
 		}
 		
+		if(!((ctx.num_expressn(1).getChildCount() > 2) && (ctx.num_expressn(0).getChildCount() > 2)))
+		{
+			reg1 = DesiRuntimeConstants.REGISTER_THREE;
+			reg2 = DesiRuntimeConstants.REGISTER_FOUR;
+		}
+		else
+		{
+			reg1 = DesiRuntimeConstants.REGISTER_TWO;
+			reg2 = DesiRuntimeConstants.REGISTER_THREE;
+		}
+	
 		
 		visit(ctx.num_expressn(tree_one));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-				DesiRuntimeConstants.REGISTER_TWO + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+				reg1 + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		visit(ctx.num_expressn(tree_two));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-				DesiRuntimeConstants.REGISTER_THREE + " " +DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+				reg2 + " " +DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		switch(ctx.op.getType()) {
 			case DesiGrammarParser.MUL:
 				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.MULTIPLICATION +" " +
 						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
-						DesiRuntimeConstants.REGISTER_TWO + " " +
-						DesiRuntimeConstants.REGISTER_THREE);
+						reg1 + " " + reg2);
 				break;
 			case DesiGrammarParser.DIV:
 				intermediateCodeGenerator.addIntermediateOutput( DesiRuntimeConstants.DIVISION +" " +
 						DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " +
-						DesiRuntimeConstants.REGISTER_TWO + " " +
-						DesiRuntimeConstants.REGISTER_THREE);
+						reg1 + " " + reg2);
 				break;
 		}
 
 		return null;
 	}
 	
-
 	@Override
 	public Object visitExpressionNumberIdentifierOnly(ExpressionNumberIdentifierOnlyContext ctx) {
 		String identifier = ctx.IDENTIFIER().getText();
