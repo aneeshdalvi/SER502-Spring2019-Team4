@@ -79,10 +79,10 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	public Object visitExpressionNumberPlusMinus(ExpressionNumberPlusMinusContext ctx) {
 		visit(ctx.num_expressn(0));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-		DesiRuntimeConstants.REGISTER_TWO + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+		DesiRuntimeConstants.REGISTER_TWO + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		visit(ctx.num_expressn(1));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-				DesiRuntimeConstants.REGISTER_THREE + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+				DesiRuntimeConstants.REGISTER_THREE + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		switch(ctx.op.getType()) {
 			case DesiGrammarParser.ADD:
@@ -108,10 +108,10 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 
 		visit(ctx.num_expressn(0));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-				DesiRuntimeConstants.REGISTER_TWO + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+				DesiRuntimeConstants.REGISTER_TWO + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		visit(ctx.num_expressn(1));
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-				DesiRuntimeConstants.REGISTER_THREE + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+				DesiRuntimeConstants.REGISTER_THREE + " " +DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		switch(ctx.op.getType()) {
 			case DesiGrammarParser.MUL:
@@ -175,8 +175,6 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	
 	@Override
 	public Object visitIfExpressn(IfExpressnContext ctx) {
-//		System.out.println("in if");
-//		System.out.println(ctx.getText());
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.IF_ELSE_SHURU);
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.IF_SHURU);
 		visit(ctx.cond_expressn());
@@ -190,12 +188,10 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		}
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.IF_ELSE_KHATAM);
 		return null; 
-//		return super.visitIfExpressn(ctx);
 	}
 	
 	@Override
 	public Object visitElseExpressn(ElseExpressnContext ctx) {
-//		System.out.println(ctx.getText());
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ELSE_SHURU);
 		visit(ctx.block());
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ELSE_KHATAM);
@@ -204,7 +200,6 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	
 	@Override
 	public Object visitElseIfExpressn(ElseIfExpressnContext ctx) {
-//		System.out.println(ctx.getText());
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.ELSE_IF_SHURU);
 		visit(ctx.cond_expressn());
 		visit(ctx.block());
