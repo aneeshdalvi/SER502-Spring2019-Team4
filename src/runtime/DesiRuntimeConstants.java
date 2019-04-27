@@ -3,32 +3,32 @@ package runtime;
 public interface DesiRuntimeConstants {
 
 
-	public static final String IF_ELSE_START = "IF_ELSE_START";
-	public static final String IF_ELSE_END = "IF_ELSE_END";
-	public static final String IF_START = "IF_START";
-	public static final String IF_END = "IF_END";
-	public static final String ELSE_IF_START = "ELSE_IF_START";
-	public static final String ELSE_IF_END = "ELSE_IF_END";
-	public static final String ELSE_START = "ELSE_START";
-	public static final String ELSE_END = "ELSE_END";
+	public static final String IF_ELSE_SHURU = "IF_ELSE_SHURU";
+	public static final String IF_ELSE_KHATAM = "IF_ELSE_KHATAM";
+	public static final String IF_SHURU = "IF_SHURU";
+	public static final String IF_KHATAM = "IF_KHATAM";
+	public static final String ELSE_IF_SHURU = "ELSE_IF_SHURU";
+	public static final String ELSE_IF_KHATAM = "ELSE_IF_KHATAM";
+	public static final String ELSE_SHURU = "ELSE_SHURU";
+	public static final String ELSE_KHATAM = "ELSE_KHATAM";
 	public static final String NULL_STR = "NULL";
 
 
-	public static final String COMPARISION_START = "COMPARISION_START";
-	public static final String COMPARISION_END = "COMPARISION_END";
+	public static final String COMPARISION_SHURU = "COMPARISION_SHURU";
+	public static final String COMPARISION_KHATAM = "COMPARISION_KHATAM";
 
 	public static final String ACCUMULATOR_REGISTER = "ACC";
-	public static final String SECOND_REGISTER = "C";
-	public static final String THIRD_REGISTER = "B";
+	public static final String REGISTER_TWO = "C";
+	public static final String REGISTER_THREE = "B";
 
 	public static final String STORE_INSTRUCTION = "LOAD";
 	public static final String READ_INSTRUCTION = "READ";
 	public static final String WRITE_INSTRUCTION = "PRINT";
 
-	public static final String ADD_INSTRUCTION = "ADD";
-	public static final String SUB_INSTRUCTION = "SUB";
-	public static final String MUL_INSTRUCTION = "MUL";
-	public static final String DIV_INSTRUCTION = "DIV";
+	public static final String ADDITION = "ADD";
+	public static final String SUBTRACTION = "SUB";
+	public static final String MULTIPLICATION = "MUL";
+	public static final String DIVISION = "DIV";
 
 	public static final String UNARY_MINUS = "UNARY";
 

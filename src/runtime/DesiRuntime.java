@@ -46,10 +46,10 @@ public class DesiRuntime implements DesiRuntimeConstants{
         	executePrintInstruction(instructions);
         	break;
         	
-        case ADD_INSTRUCTION:
-        case SUB_INSTRUCTION:
-        case MUL_INSTRUCTION:
-        case DIV_INSTRUCTION:
+        case ADDITION:
+        case SUBTRACTION:
+        case MULTIPLICATION:
+        case DIVISION:
             executeArithmeticOperations(instructions);
             break;
             
@@ -99,16 +99,16 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    	int rightOperand = getWildCardValue(instruction[3]).asInt();
 	    	
 	    	switch(instruction[0]) {
-            case ADD_INSTRUCTION:
+            case ADDITION:
                 setValue(instruction[1], new DataValues(leftOperand + rightOperand));
                 break;
-            case SUB_INSTRUCTION:
+            case SUBTRACTION:
                 setValue(instruction[1], new DataValues(leftOperand - rightOperand));
                 break;
-            case MUL_INSTRUCTION:
+            case MULTIPLICATION:
                 setValue(instruction[1], new DataValues(leftOperand * rightOperand));
                 break;
-            case DIV_INSTRUCTION:
+            case DIVISION:
                 setValue(instruction[1], new DataValues(leftOperand / rightOperand));
                 break;
         }
