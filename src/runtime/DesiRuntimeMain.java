@@ -10,7 +10,7 @@ public class DesiRuntimeMain {
 	
 	public static void main(String[] args) throws IOException {
 		
-		 String inputFile = "DesiArithmeticExpr.vdesi";
+		 String inputFile = "DesiWhile.vdesi";
 
 	        String inputPath = "./src/data/";
 
