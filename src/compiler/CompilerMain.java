@@ -26,7 +26,5 @@ public class CompilerMain {
 		d.visit(tree);
 		Trees.inspect(tree, parser);
 		System.out.println(d.getOutput());
-
 	}
-
 }
