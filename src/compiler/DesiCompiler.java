@@ -462,13 +462,13 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 
         switch(ctx.op.getType()) {
             case DesiGrammarParser.ISEquals:
-            	intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.BOOLEAN_EQUAL_EQUAL + " " 
+            	intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.EQUAL_EQUAL + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
                 		+ DesiRuntimeConstants.REGISTER_TWO + " " 
                 		+ DesiRuntimeConstants.REGISTER_THREE);
                 break;
             case DesiGrammarParser.NotEquals:
-                intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.BOOLEAN_NOT_EQUAL + " " 
+                intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.NOT_EQUAL + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
                 		+ DesiRuntimeConstants.REGISTER_TWO + " " 
                 		+ DesiRuntimeConstants.REGISTER_THREE);

@@ -85,13 +85,44 @@ public class DesiRuntime implements DesiRuntimeConstants{
     		executeUnaryMinusInstruction(instructions);
     		break;
        
-   
+        case OR:
+        case AND:
+            executeBooleanInstruction(instructions);
+            break;
             
 	    }
 	    
 		return programCounter;
 	}
 
+	    private void executeBooleanInstruction(String[] instruction) throws Exception {
+	    	
+	    	DataValues left = getWildCardValue(instruction[2]);
+			DataValues right = getWildCardValue(instruction[3]);
+			String leftDatatype = left.getDataType();
+			String rightDatatype = right.getDataType();
+
+			if(leftDatatype!=rightDatatype) {
+				throw new Exception("Data mismatch");
+			}else if(leftDatatype==rightDatatype && !leftDatatype.equalsIgnoreCase("integer")) {
+				boolean leftB = left.asBoolean();
+		        boolean rightB = right.asBoolean();
+		        
+		        switch(instruction[0]) {
+		           
+		            case AND:
+		            	setValue(instruction[1], new DataValues(leftB && rightB));
+		            	break;
+		            case OR:
+		            	setValue(instruction[1], new DataValues(leftB || rightB));
+		            	break;
+		          
+		        }
+			}
+	        
+	    }
+	    
+	    
 	    private void executeUnaryMinusInstruction(String[] instruction) throws Exception{
 	    	DataValues operand = getWildCardValue(instruction[1]);
 	    	String operandDatatype = operand.getDataType();

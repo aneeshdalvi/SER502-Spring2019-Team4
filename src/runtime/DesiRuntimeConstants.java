@@ -46,9 +46,6 @@ public interface DesiRuntimeConstants {
 	public static final String OR = "OR";
 	public static final String AND = "AND";
 
-	public static final String BOOLEAN_EQUAL_EQUAL = "BOOL_ISEQUALS";
-	public static final String BOOLEAN_NOT_EQUAL = "BOOL_IS_NOT_EQUALS";
-
 
 	public static final String CONDITION_SHURU = "CONDITION_SHURU";
 	public static final String CONDITION_KHATAM = "CONDITION_KHATAM";
