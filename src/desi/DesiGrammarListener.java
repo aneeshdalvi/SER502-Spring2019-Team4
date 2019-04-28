@@ -111,6 +111,18 @@ public interface DesiGrammarListener extends ParseTreeListener {
 	 */
 	void exitExpressionBooleanConnector(DesiGrammarParser.ExpressionBooleanConnectorContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code expressionBooleanOnly}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionBooleanOnly(DesiGrammarParser.ExpressionBooleanOnlyContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionBooleanOnly}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionBooleanOnly(DesiGrammarParser.ExpressionBooleanOnlyContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code expressionNumberComparison}
 	 * labeled alternative in {@link DesiGrammarParser#comp_expressn}.
 	 * @param ctx the parse tree

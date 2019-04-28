@@ -72,6 +72,13 @@ public interface DesiGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpressionBooleanConnector(DesiGrammarParser.ExpressionBooleanConnectorContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code expressionBooleanOnly}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionBooleanOnly(DesiGrammarParser.ExpressionBooleanOnlyContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code expressionNumberComparison}
 	 * labeled alternative in {@link DesiGrammarParser#comp_expressn}.
 	 * @param ctx the parse tree

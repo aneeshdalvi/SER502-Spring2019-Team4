@@ -23,9 +23,10 @@ expression
 
 bool_expressn
     : bool_expressn op=(ISEquals|NotEquals) bool_expressn # expressionBoolean
-    | bool_expressn op=(AND|OR) bool_expressn                # expressionBooleanConnector
-    | comp_expressn                                            # expressionBooleanComparison
-    | '(' bool_expressn ')'                                       # expressionBooleanParentheses
+    | bool_expressn op=(AND|OR) bool_expressn             # expressionBooleanConnector
+    | comp_expressn                                       # expressionBooleanComparison
+    | '(' bool_expressn ')'                               # expressionBooleanParentheses
+    | BOOLEAN											  # expressionBooleanOnly
     ;
 comp_expressn
     : num_expressn op=(GREATER|LESSER|MORE_or_EQU|LESS_or_EQU|ISEquals|NotEquals) num_expressn  # expressionNumberComparison

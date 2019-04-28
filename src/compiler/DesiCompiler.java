@@ -11,6 +11,7 @@ import desi.DesiGrammarParser.ExpressionBooleanConnectorContext;
 import desi.DesiGrammarParser.ExpressionNumberComparisonContext;
 import desi.DesiGrammarParser.ExpressionBooleanComparisonContext;
 import desi.DesiGrammarParser.ExpressionBooleanContext;
+import desi.DesiGrammarParser.ExpressionBooleanOnlyContext;
 import desi.DesiGrammarParser.ExpressionBooleanParenthesesContext;
 import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
 import desi.DesiGrammarParser.ExpressionNumberMultiplyDivideContext;
@@ -238,6 +239,15 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER +" "+ integerValue);
 		return null; 
 	}
+	
+	
+	@Override
+	public Object visitExpressionBooleanOnly(ExpressionBooleanOnlyContext ctx) {
+		String value = ctx.BOOLEAN().getText();
+		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER +" "+ value);
+		return null;
+	}
+	
 	
 	@Override
 	public Object visitWhileExpressn(WhileExpressnContext ctx) {
