@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import desi.DesiGrammarBaseVisitor;
 import desi.DesiGrammarParser;
 
-public class DesiCompiler extends DesiGrammarBaseVisitor{
+public class DesiCompiler extends DesiGrammarBaseVisitor<Object>{
 
 	ArrayList<String> varList = new ArrayList<String>();
 	
