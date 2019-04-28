@@ -22,11 +22,16 @@ import desi.DesiGrammarParser.PrintContext;
 import desi.DesiGrammarParser.ProgramContext;
 import desi.DesiGrammarParser.WhileExpressnContext;
 import runtime.DesiRuntimeConstants;
+
+import java.util.ArrayList;
+
 import desi.DesiGrammarBaseVisitor;
 import desi.DesiGrammarParser;
 
 public class DesiCompiler extends DesiGrammarBaseVisitor{
 
+	ArrayList<String> varList = new ArrayList<String>();
+	
 	private class IntermediateCodeGenerator {
         private String IntermediateOutput = "";
         private void addIntermediateOutput(String output) {
@@ -59,21 +64,44 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitAssignmentInteger(AssignmentIntegerContext ctx) {
 		
-		String indentifier = ctx.IDENTIFIER().getText();
+		String identifier = ctx.IDENTIFIER().getText();
+		
+		if(ctx.getText().contains("int"))
+		{
+			addVariable(identifier);
+		}
+		else
+		{
+			if(!checkVariableExist(identifier))
+			{
+				System.err.println("Compile time error : Variable " +identifier+ " not defined");
+	            System.exit(1);
+			}
+		}
+		
+		
 		if(ctx.EQUALSto()!= null)
 		{
 			//if initialization and assignment done in the same statement
 			visit(ctx.num_expressn());
 			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-			indentifier + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+					identifier + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		}
 		else {
 			//if no assignment to the variable is done. Default value is can be 0
 			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-			indentifier + " " + DesiRuntimeConstants.NULL_STR);
+					identifier + " " + DesiRuntimeConstants.DEFAULT_INT);
 		}
 		return null;
 	}
+	
+
+	@Override
+	public Object visitExpressionNumberParentheses(ExpressionNumberParenthesesContext ctx) {
+		visit(ctx.num_expressn());
+		return null;
+	}
+	
 	
 	@Override
 	public Object visitExpressionNumberPlusMinus(ExpressionNumberPlusMinusContext ctx) {
@@ -181,10 +209,18 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitExpressionNumberIdentifierOnly(ExpressionNumberIdentifierOnlyContext ctx) {
 		String identifier = ctx.IDENTIFIER().getText();
-		intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER + " "  + identifier);
-		if(ctx.SUB() != null)
+		if(checkVariableExist(identifier))
 		{
-			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.UNARY_MINUS + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER + " "  + identifier);
+			if(ctx.SUB() != null)
+			{
+				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.UNARY_MINUS + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+			}
+		}
+		else
+		{
+			System.err.println("Compile time error : Variable " +identifier+ " not defined");
+            System.exit(1);
 		}
 		return null;
 	}
@@ -257,6 +293,20 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	@Override
 	public Object visitAssignmentBoolean(AssignmentBooleanContext ctx) {
 		String identifier = ctx.IDENTIFIER().getText();
+		
+		if(ctx.getText().contains("bool"))
+		{
+			addVariable(identifier);
+		}
+		else
+		{
+			if(!checkVariableExist(identifier))
+			{
+				System.err.println("Compile time error : Variable " +identifier+ " not defined");
+	            System.exit(1);
+			}
+		}
+		
 		if(ctx.EQUALSto() != null) {
             visit(ctx.bool_expressn());
             intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " 
@@ -266,7 +316,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
         else {
         	intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " 
             		+ identifier + " " 
-            		+ DesiRuntimeConstants.NULL_STR);
+            		+ DesiRuntimeConstants.DEFAULT_BOOL);
         }
         return null;
 	}
@@ -354,18 +404,21 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	}
 	
 	
-	@Override
-	public Object visitExpressionNumberParentheses(ExpressionNumberParenthesesContext ctx) {
-		visit(ctx.num_expressn());
-		return null;
-	}
-	
 	
 	@Override
 	public Object visitPrint(PrintContext ctx) {
 		
 		if(ctx.IDENTIFIER() != null) {
-			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WRITE_INSTRUCTION + " " + ctx.IDENTIFIER().getText());
+			if(checkVariableExist(ctx.IDENTIFIER().getText()))
+			{
+				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WRITE_INSTRUCTION + " " + ctx.IDENTIFIER().getText());
+			}
+			else
+			{
+				System.err.println("Compile time error : Variable " +ctx.IDENTIFIER().getText()+ " not defined");
+	            System.exit(1);
+			}
+			
         }
         else if(ctx.DIGITS() != null) {
         	intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.WRITE_INSTRUCTION + " " + ctx.DIGITS().getText());            
@@ -422,4 +475,25 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
         visit(ctx.bool_expressn());
         return null;
     }
+    
+    
+    void addVariable(String varName)
+    {
+    	varList.add(varName);
+    }
+    
+    
+    boolean checkVariableExist(String varName)
+    {
+    	boolean flag = false;
+    	if( varList.contains(varName))
+    	{
+    		flag = true;
+    	}
+    	
+    	return flag;
+    	
+    }
+    
+    
 }

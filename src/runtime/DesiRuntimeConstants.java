@@ -12,6 +12,9 @@ public interface DesiRuntimeConstants {
 	public static final String ELSE_SHURU = "ELSE_SHURU";
 	public static final String ELSE_KHATAM = "ELSE_KHATAM";
 	public static final String NULL_STR = "NULL";
+	
+	public static final String DEFAULT_BOOL = "FALSE";
+	public static final String DEFAULT_INT = "0";
 
 
 	public static final String COMPARISION_SHURU = "COMPARISION_SHURU";

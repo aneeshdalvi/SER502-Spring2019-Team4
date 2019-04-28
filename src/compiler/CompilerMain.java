@@ -15,7 +15,7 @@ public class CompilerMain {
 
 	public static void main(String[] args) throws IOException {
 		
-		ANTLRInputStream input = new ANTLRFileStream("data/inputTestFile3.desi");
+		ANTLRInputStream input = new ANTLRFileStream("data/test.desi");
 		
 		DesiGrammarLexer lexer = new DesiGrammarLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -24,7 +24,7 @@ public class CompilerMain {
 		ParseTree tree  = parser.program();
 		DesiCompiler d = new DesiCompiler();
 		d.visit(tree);
-		//Trees.inspect(tree, parser);
+		Trees.inspect(tree, parser);
 		System.out.println(d.getOutput());
 	}
 }
