@@ -90,7 +90,10 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 		else {
 			//if no assignment to the variable is done. Default value is can be 0
 			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
-					identifier + " " + DesiRuntimeConstants.DEFAULT_INT);
+					DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " + DesiRuntimeConstants.DEFAULT_INT);
+			
+			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
+					identifier + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		}
 		return null;
 	}
@@ -314,9 +317,13 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
             		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER);
         }
         else {
-        	intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " 
-            		+ identifier + " " 
-            		+ DesiRuntimeConstants.DEFAULT_BOOL);
+        	
+        	intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
+					DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " + DesiRuntimeConstants.DEFAULT_BOOL);
+			
+			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION +" " +
+					identifier + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER);
+        	
         }
         return null;
 	}
