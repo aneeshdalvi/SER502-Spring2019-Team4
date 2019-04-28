@@ -125,6 +125,18 @@ public class DesiGrammarBaseListener implements DesiGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterExpressionBooleanOnly(DesiGrammarParser.ExpressionBooleanOnlyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionBooleanOnly(DesiGrammarParser.ExpressionBooleanOnlyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpressionNumberComparison(DesiGrammarParser.ExpressionNumberComparisonContext ctx) { }
 	/**
 	 * {@inheritDoc}

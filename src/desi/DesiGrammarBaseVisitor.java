@@ -1,6 +1,5 @@
 package desi;
 
-
 // Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -76,6 +75,13 @@ public class DesiGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T> imple
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitExpressionBooleanConnector(DesiGrammarParser.ExpressionBooleanConnectorContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitExpressionBooleanOnly(DesiGrammarParser.ExpressionBooleanOnlyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
