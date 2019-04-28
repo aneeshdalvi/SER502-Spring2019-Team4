@@ -81,7 +81,9 @@ public class DesiRuntime implements DesiRuntimeConstants{
         	programCounter = executeWhile(++programCounter);
         	break;
         	
-        
+        case UNARY_MINUS:
+    		executeUnaryMinusInstruction(instructions);
+    		break;
        
    
             
@@ -90,6 +92,17 @@ public class DesiRuntime implements DesiRuntimeConstants{
 		return programCounter;
 	}
 
+	    private void executeUnaryMinusInstruction(String[] instruction) throws Exception{
+	    	DataValues operand = getWildCardValue(instruction[1]);
+	    	String operandDatatype = operand.getDataType();
+	    	if(operandDatatype.equalsIgnoreCase("INTEGER")) {
+	    		setValue(instruction[1], new DataValues(operand.asInt()*-1));
+	    	}else {
+	    		throw new Exception("Can not perform unary operation on binary");
+	    	}
+	    	
+	    }
+	    
 	    private void executeBooleanComparisonOperations(String[] instruction) throws Exception {
 	    	
 
