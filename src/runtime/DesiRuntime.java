@@ -21,7 +21,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    }
 
 	 
-	 public void execute() {
+	 public void execute() throws Exception {
 		 initializeStackMemory();
 
 	        while(programCounter < intermediateCode.size()) {
@@ -33,7 +33,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    }
 
 
-	    private int executeInstructionHandler(String currentInstruction, int programCounter) {
+	    private int executeInstructionHandler(String currentInstruction, int programCounter) throws Exception {
 	    	
 	    String[] instructions = splitInstruction(currentInstruction);
 		String instructionType = instructions[0];
@@ -90,50 +90,96 @@ public class DesiRuntime implements DesiRuntimeConstants{
 		return programCounter;
 	}
 
-	    private void executeBooleanComparisonOperations(String[] instruction) {
-	    	int leftOperand = getValue(instruction[2]).asInt();
-	    	int rightOperand = getValue(instruction[3]).asInt();
+	    private void executeBooleanComparisonOperations(String[] instruction) throws Exception {
 	    	
-	    	switch(instruction[0]) {
-		    	case GT:
-		    		setValue(instruction[1], new DataValues(leftOperand > rightOperand));
-		    		break;
-		    	case GTE:
-		    		setValue(instruction[1], new DataValues(leftOperand >= rightOperand));
-		    		break;
-		    	case LT:
-		    		setValue(instruction[1], new DataValues(leftOperand < rightOperand));
-		    		break;
-		    	case LTE:
-		    		setValue(instruction[1], new DataValues(leftOperand <= rightOperand));
-		    		break;
-		    	case EQUAL_EQUAL:
-		    		setValue(instruction[1], new DataValues(leftOperand == rightOperand));
-		    		break;
-		    	case NOT_EQUAL:
-		    		setValue(instruction[1], new DataValues(leftOperand != rightOperand));
-		    		break;        
+
+			
+			DataValues left = getWildCardValue(instruction[2]);
+			DataValues right = getWildCardValue(instruction[3]);
+			String leftDatatype = left.getDataType();
+			String rightDatatype = right.getDataType();
+
+			if(leftDatatype!=rightDatatype) {
+				throw new Exception("Data mismatch");
+			}else if(leftDatatype==rightDatatype && !leftDatatype.equalsIgnoreCase("integer")) {
+					boolean leftOperand = getValue(instruction[2]).asBoolean();
+			    	boolean rightOperand = getValue(instruction[3]).asBoolean();
+			    	switch(instruction[0]) {
+					case EQUAL_EQUAL:
+			    		setValue(instruction[1], new DataValues(leftOperand == rightOperand));
+			    		break;
+			    	case NOT_EQUAL:
+			    		setValue(instruction[1], new DataValues(leftOperand != rightOperand));
+			    		break;  
+			    	default:
+			    		throw new Exception("Arithmetic exception Can't be performed on boolean type");
+			    	}
+				
+			}
+			else {
+				int leftOperand = getValue(instruction[2]).asInt();
+		    	int rightOperand = getValue(instruction[3]).asInt();
+		    	
+		    	switch(instruction[0]) {
+			    	case GT:
+			    		setValue(instruction[1], new DataValues(leftOperand > rightOperand));
+			    		break;
+			    	case GTE:
+			    		setValue(instruction[1], new DataValues(leftOperand >= rightOperand));
+			    		break;
+			    	case LT:
+			    		setValue(instruction[1], new DataValues(leftOperand < rightOperand));
+			    		break;
+			    	case LTE:
+			    		setValue(instruction[1], new DataValues(leftOperand <= rightOperand));
+			    		break;
+			    	case EQUAL_EQUAL:
+			    		setValue(instruction[1], new DataValues(leftOperand == rightOperand));
+			    		break;
+			    	case NOT_EQUAL:
+			    		setValue(instruction[1], new DataValues(leftOperand != rightOperand));
+			    		break;        
+			}
+	    	
+	    	
 	    	}
 	    }
 
-		private void executeArithmeticOperations(String[] instruction) {
-	    	int leftOperand = getWildCardValue(instruction[2]).asInt();
-	    	int rightOperand = getWildCardValue(instruction[3]).asInt();
+		private void executeArithmeticOperations(String[] instruction) throws Exception {
+			
+			DataValues left = getWildCardValue(instruction[2]);
+			DataValues right = getWildCardValue(instruction[3]);
+			String leftDatatype = left.getDataType();
+			String rightDatatype = right.getDataType();
+
+			if(leftDatatype!=rightDatatype) {
+				throw new Exception("Data mismatch");
+			}else if(leftDatatype==rightDatatype && !leftDatatype.equalsIgnoreCase("integer")) {
+				throw new Exception("Arithmetic exception Can't be performed on boolean type");
+			}
+			else {
+				int leftOperand = left.asInt();
+		    	int rightOperand = right.asInt();
+		    	
+		    	switch(instruction[0]) {
+	            case ADDITION:
+	                setValue(instruction[1], new DataValues(leftOperand + rightOperand));
+	                break;
+	            case SUBTRACTION:
+	                setValue(instruction[1], new DataValues(leftOperand - rightOperand));
+	                break;
+	            case MULTIPLICATION:
+	                setValue(instruction[1], new DataValues(leftOperand * rightOperand));
+	                break;
+	            case DIVISION:
+	                setValue(instruction[1], new DataValues(leftOperand / rightOperand));
+	                break;
+	        }
+			}
+			
+		
+			
 	    	
-	    	switch(instruction[0]) {
-            case ADDITION:
-                setValue(instruction[1], new DataValues(leftOperand + rightOperand));
-                break;
-            case SUBTRACTION:
-                setValue(instruction[1], new DataValues(leftOperand - rightOperand));
-                break;
-            case MULTIPLICATION:
-                setValue(instruction[1], new DataValues(leftOperand * rightOperand));
-                break;
-            case DIVISION:
-                setValue(instruction[1], new DataValues(leftOperand / rightOperand));
-                break;
-        }
 	    	
 		}
 
@@ -205,19 +251,14 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	        return hashMap.get(identifier);
 	    }
 	    
-	    private int executeWhile(int whileStartCounter) {
+	    private int executeWhile(int whileStartCounter) throws Exception {
 	        int counter;
 	        while(true) {
 	            counter = executionBlock(whileStartCounter, CONDITION_KHATAM,false);
 	            boolean b= getValue(ACCUMULATOR_REGISTER).asBoolean();
-	            System.out.println();
-	            System.out.println(b + " " + counter);
-	            System.out.println();
+	           
 	            if(b) {
 	            	counter = executionBlock(counter, WHILE_KHATAM,false);
-	            	System.out.println();
-	            	System.out.println("if true : "+ counter);
-	            	System.out.println();
 	            }
 	            else {
 	                counter = executionBlock(counter, WHILE_KHATAM,true);
@@ -248,9 +289,10 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    }
 	    
 	    
-	    private int executionBlock(int programCounter, String stopCond,boolean skipLastConditionCheck) {
+	    private int executionBlock(int programCounter, String stopCond,boolean skipLastConditionCheck) throws Exception {
 	        while(programCounter >= 0) {
 	            String instruction = intermediateCode.get(programCounter);
+	            //System.out.println(instruction);
 	            if (instruction.equals(stopCond)) {
 	                break;
 	            }
@@ -266,7 +308,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    
 	    
 	    
-	    private int executeIf(int programCounter) {
+	    private int executeIf(int programCounter) throws Exception {
 	    	programCounter = executionBlock(programCounter, CONDITION_KHATAM,false);
 	    	if(getValue(ACCUMULATOR_REGISTER).asBoolean()){
 	    		programCounter = executionBlock(programCounter, IF_KHATAM,false);
@@ -278,13 +320,13 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    }
 	    
 	    
-	    private int executeElse(int programCounter) {
+	    private int executeElse(int programCounter) throws Exception {
 	    	programCounter = executionBlock(programCounter, ELSE_KHATAM,false);
 	     	return programCounter;
 	    }
 	    
 	    
-	    private int executeElseIf(int programCounter) {
+	    private int executeElseIf(int programCounter) throws Exception {
 	    	programCounter = executionBlock(programCounter, CONDITION_KHATAM,false);
 	    	if(getValue(ACCUMULATOR_REGISTER).asBoolean()){
 	    		programCounter = executionBlock(programCounter, ELSE_IF_KHATAM,false);
