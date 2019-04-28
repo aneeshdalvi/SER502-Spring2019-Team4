@@ -372,49 +372,49 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	public Object visitExpressionNumberComparison(ExpressionNumberComparisonContext ctx) {
 		visit(ctx.num_expressn(0));
         intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " 
-        		+ DesiRuntimeConstants.REGISTER_TWO + " " 
+        		+ DesiRuntimeConstants.REGISTER_THREE + " " 
         		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		visit(ctx.num_expressn(1));
         intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " 
-        		+ DesiRuntimeConstants.REGISTER_THREE + " " 
+        		+ DesiRuntimeConstants.REGISTER_FOUR + " " 
         		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER);
 		
 		switch(ctx.op.getType()) {
 			case DesiGrammarParser.GREATER:
 				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.GT + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
-                		+ DesiRuntimeConstants.REGISTER_TWO + " " 
-                		+ DesiRuntimeConstants.REGISTER_THREE);
+                		+ DesiRuntimeConstants.REGISTER_THREE + " " 
+                		+ DesiRuntimeConstants.REGISTER_FOUR);
 				break;
 			case DesiGrammarParser.MORE_or_EQU:
 				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.GTE + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
-                		+ DesiRuntimeConstants.REGISTER_TWO + " " 
-                		+ DesiRuntimeConstants.REGISTER_THREE);
+                		+ DesiRuntimeConstants.REGISTER_THREE + " " 
+                		+ DesiRuntimeConstants.REGISTER_FOUR);
 				break;
 			case DesiGrammarParser.LESSER:
 				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.LT + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
-                		+ DesiRuntimeConstants.REGISTER_TWO + " " 
-                		+ DesiRuntimeConstants.REGISTER_THREE);
+                		+ DesiRuntimeConstants.REGISTER_THREE + " " 
+                		+ DesiRuntimeConstants.REGISTER_FOUR);
 				break;
 			case DesiGrammarParser.LESS_or_EQU:
 				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.LTE + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
-                		+ DesiRuntimeConstants.REGISTER_TWO + " " 
-                		+ DesiRuntimeConstants.REGISTER_THREE);
+                		+ DesiRuntimeConstants.REGISTER_THREE + " " 
+                		+ DesiRuntimeConstants.REGISTER_FOUR);
 				break;
 			case DesiGrammarParser.ISEquals:
 				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.EQUAL_EQUAL + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
-                		+ DesiRuntimeConstants.REGISTER_TWO + " " 
-                		+ DesiRuntimeConstants.REGISTER_THREE);
+                		+ DesiRuntimeConstants.REGISTER_THREE + " " 
+                		+ DesiRuntimeConstants.REGISTER_FOUR);
 				break;
 			case DesiGrammarParser.NotEquals:
 				intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.NOT_EQUAL + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
-                		+ DesiRuntimeConstants.REGISTER_TWO + " " 
-                		+ DesiRuntimeConstants.REGISTER_THREE);
+                		+ DesiRuntimeConstants.REGISTER_THREE + " " 
+                		+ DesiRuntimeConstants.REGISTER_FOUR);
 				break;
 		}
 		return null; 
@@ -472,13 +472,13 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 
         switch(ctx.op.getType()) {
             case DesiGrammarParser.ISEquals:
-            	intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.EQUAL_EQUAL + " " 
+            	intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.BOOLEAN_EQUAL_EQUAL + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
                 		+ DesiRuntimeConstants.REGISTER_TWO + " " 
                 		+ DesiRuntimeConstants.REGISTER_THREE);
                 break;
             case DesiGrammarParser.NotEquals:
-                intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.NOT_EQUAL + " " 
+                intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.BOOLEAN_NOT_EQUAL + " " 
                 		+ DesiRuntimeConstants.ACCUMULATOR_REGISTER + " " 
                 		+ DesiRuntimeConstants.REGISTER_TWO + " " 
                 		+ DesiRuntimeConstants.REGISTER_THREE);
@@ -493,12 +493,10 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
         return null;
     }
     
-    
     void addVariable(String varName)
     {
     	varList.add(varName);
     }
-    
     
     boolean checkVariableExist(String varName)
     {
@@ -509,8 +507,5 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
     	}
     	
     	return flag;
-    	
     }
-    
-    
 }
