@@ -39,6 +39,7 @@ public class CompilerMain {
 		DesiCompiler d = new DesiCompiler();
 		d.visit(tree);
 		List<String> intermediateCode = Arrays.asList(d.getOutput().split("\\n"));
+		System.out.println(d.getOutput());
 		if(intermediateCode.size()>1)
 		{
 			PrintWriter writer = new PrintWriter(outputPath + inputFileName + outputFileExtension, "UTF-8");
