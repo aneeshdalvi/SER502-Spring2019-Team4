@@ -101,7 +101,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 			DataValues right = getWildCardValue(instruction[3]);
 			String leftDatatype = left.getDataType();
 			String rightDatatype = right.getDataType();
-
+			System.out.println(leftDatatype + " "+ rightDatatype);
 			if(leftDatatype!=rightDatatype) {
 				throw new Exception("Data mismatch");
 			}else if(leftDatatype==rightDatatype && !leftDatatype.equalsIgnoreCase("integer")) {

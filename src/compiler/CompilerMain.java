@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 
 import desi.DesiGrammarLexer;
 import desi.DesiGrammarParser;
@@ -28,10 +30,15 @@ public class CompilerMain {
 		String inputFileName = "test";
 		String inputFileExtension = ".desi";
 		
-		ANTLRInputStream input = new ANTLRFileStream(inputPath + inputFileName + inputFileExtension);
+		String path = inputPath + inputFileName+inputFileExtension;
 		
+		if (args.length > 0) {
+            path = args[0];
+        }
+		//ANTLRInputStream input = new ANTLRFileStream();
+		CharStream code = CharStreams.fromFileName(path);
 		
-		DesiGrammarLexer lexer = new DesiGrammarLexer(input);
+		DesiGrammarLexer lexer = new DesiGrammarLexer(code);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		DesiGrammarParser parser = new DesiGrammarParser(tokens);
 		ParseTree tree  = parser.program();
