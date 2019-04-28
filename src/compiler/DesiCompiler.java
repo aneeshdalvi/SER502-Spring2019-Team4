@@ -297,7 +297,7 @@ public class DesiCompiler extends DesiGrammarBaseVisitor{
 	public Object visitAssignmentBoolean(AssignmentBooleanContext ctx) {
 		String identifier = ctx.IDENTIFIER().getText();
 		
-		if(ctx.getText().contains("bool"))
+		if(ctx.getText().contains("boolean"))
 		{
 			addVariable(identifier);
 		}
