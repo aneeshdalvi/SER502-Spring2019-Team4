@@ -4,6 +4,7 @@ import java.io.IOException;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.gui.Trees;
+import java.io.PrintWriter;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
 
@@ -26,5 +27,7 @@ public class CompilerMain {
 		d.visit(tree);
 		Trees.inspect(tree, parser);
 		System.out.println(d.getOutput());
+		
+		//PrintWriter writer = new PrintWriter(path.replace("race", "intermediate"), "UTF-8");
 	}
 }
