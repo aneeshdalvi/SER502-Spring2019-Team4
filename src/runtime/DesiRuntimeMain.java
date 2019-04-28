@@ -29,6 +29,7 @@ public class DesiRuntimeMain {
 
 	            DesiRuntime runtime = new DesiRuntime(code.toString());
 	            runtime.execute();
+	            System.out.println(runtime.getOutputData());
 	            writer.println("Output of the program ");
 	            writer.println(runtime.getOutputData());
 	        }

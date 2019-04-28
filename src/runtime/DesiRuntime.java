@@ -9,7 +9,6 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	
 	private Stack<HashMap<String, DataValues>> memoryStack = new Stack<>();
     private List<String> intermediateCode;
-    private boolean storeReturn = false;
 
     private int programCounter = 0;
     private String output = "";
