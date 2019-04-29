@@ -1,6 +1,6 @@
 package compiler;
-import java.io.IOException;
 
+import java.io.IOException;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import java.io.PrintWriter;
@@ -15,21 +15,27 @@ public class CompilerMain {
 
 	public static void main(String[] args) throws IOException {
 
-		//Output file config
-		String outputPath = "./src/data/";
-		String outputFileExtension = ".vdesi";
-
-		//Input file config
-		String inputPath = "data/";
-		String inputFileName = "test";
-		String inputFileExtension = ".desi";
+		int lastOccurance = 0;
 		
+		String file = args[0];
+		//String file = "data\\test.desi";
+		
+		lastOccurance = file.lastIndexOf('\\');
+		String inputPath = file.substring(0,lastOccurance+1);
+		String fileName = file.substring(lastOccurance+1);
+		
+		String inputFileName = fileName.split("\\.")[0];
+		String inputFileExtension = "." + fileName.split("\\.")[1];
+		
+		//Output file config
+		String outputPath = inputPath;
+		String outputFileExtension = ".vdesi";
 		String path = inputPath + inputFileName+inputFileExtension;
 		
 		if (args.length > 0) {
             path = args[0];
         }
-		//ANTLRInputStream input = new ANTLRFileStream();
+
 		CharStream code = CharStreams.fromFileName(path);
 		
 		DesiGrammarLexer lexer = new DesiGrammarLexer(code);
@@ -40,7 +46,6 @@ public class CompilerMain {
 		DesiCompiler d = new DesiCompiler();
 		d.visit(tree);
 		List<String> intermediateCode = Arrays.asList(d.getOutput().split("\\n"));
-		System.out.println(d.getOutput());
 		if(intermediateCode.size()>1)
 		{
 			PrintWriter writer = new PrintWriter(outputPath + inputFileName + outputFileExtension, "UTF-8");
@@ -50,6 +55,5 @@ public class CompilerMain {
 			}
 			writer.close();
 		}
-		
 	}
 }
