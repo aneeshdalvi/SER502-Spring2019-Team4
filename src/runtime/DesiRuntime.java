@@ -264,7 +264,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    private void setValue(String identifier, DataValues value) {
 	        HashMap<String, DataValues> hashMap = memoryStack.peek();
 	        hashMap.put(identifier, value);
-	        System.out.println(memoryStack);
+	        //System.out.println(memoryStack);
 	        
 	    }
 	    
