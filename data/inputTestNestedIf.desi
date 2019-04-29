@@ -1,0 +1,31 @@
+shuru
+    int a =9
+    agar (a > 5)
+        shuru
+        	agar (a > 7)
+        		shuru
+	        		agar (a > 10)
+		        		shuru
+		             		dikhao (11)
+		             	khatam
+		            nahitoh
+		            	shuru
+		             		dikhao (-11)
+		             	khatam
+	             	bas
+	             	dikhao(22)
+             	khatam
+             bas
+             agar (90 > 10)
+		        shuru
+		        	dikhao (33)
+		        khatam
+		     bas
+        khatam
+    nahitoh
+    	shuru
+    		dikhao(-5)
+    	khatam
+    bas
+    dikhao (100)
+khatam
