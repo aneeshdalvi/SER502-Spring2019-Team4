@@ -4,7 +4,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
-
+/**
+ * This class handles runtime of the language and handles all control and data structures
+ * 
+ * @author Jinal Patel, Janice Abraham
+ * @since April-10-2019
+ * @version 1.0
+ */
 public class DesiRuntime implements DesiRuntimeConstants{
 	
 	private Stack<HashMap<String, DataValues>> memoryStack = new Stack<>();

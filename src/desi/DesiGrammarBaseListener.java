@@ -1,7 +1,11 @@
 package desi;
 
-// Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
-
+/**
+ * This class is Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
+ * @author Viraj Talaty
+ * @since April-10-2019
+ * @version 1.0
+ */
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;

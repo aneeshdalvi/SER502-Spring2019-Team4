@@ -1,5 +1,11 @@
 package compiler;
-
+/**
+ * This class is main class for the compiler module.
+ * 
+ * @author Viraj Talaty
+ * @since April-10-2019
+ * @version 1.0
+ */
 import java.io.IOException;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;

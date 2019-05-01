@@ -5,7 +5,13 @@ import java.io.PrintWriter;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
-
+/**
+ * This class is main class for the runtime module.
+ * 
+ * @author Viraj Talaty
+ * @since April-10-2019
+ * @version 1.0
+ */
 public class DesiRuntimeMain {
 	public static void main(String[] args) throws IOException {
         if (args.length > 0) {

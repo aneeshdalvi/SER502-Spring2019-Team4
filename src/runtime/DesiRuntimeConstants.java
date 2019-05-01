@@ -1,5 +1,10 @@
 package runtime;
-
+/**
+ * This class handles all the constants shared by compiler and runtime
+ * @author Jinal Patel
+ * @since April-10-2019
+ * @version 1.0
+ */
 public interface DesiRuntimeConstants {
 
 

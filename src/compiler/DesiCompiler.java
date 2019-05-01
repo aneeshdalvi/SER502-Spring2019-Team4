@@ -1,5 +1,11 @@
 package compiler;
 
+/**
+ * This class has all custom methods generated from grammar file and will be used in intermediate course generation.
+ * @author Viraj Talaty
+ * @since April-10-2019
+ * @version 1.0
+ */
 import desi.DesiGrammarParser.AssignmentBooleanContext;
 import desi.DesiGrammarParser.AssignmentIntegerContext;
 import desi.DesiGrammarParser.BlockContext;

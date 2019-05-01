@@ -1,5 +1,12 @@
 package runtime;
 
+/**
+ * This class handles data type of our language, conversion of each datatype
+ * @author Jinal Patel
+ * @since April-10-2019
+ * @version 1.0
+ */
+
 public class DataValues {
 
 	private final Object value;
