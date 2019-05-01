@@ -2,7 +2,7 @@
 
 # Language Name : DESI
 
-We are proud to create and name this new programming language by incorporating the keywords of Hindi language to add essence of our culture in it.  
+We are proud to create and name this new programming language by incorporating the keywords of Hindi language to add essence of our culture in it.  We are creating this programming language based on imperative paradigm and providing dynamic data binding for the variables of type integer and boolean. Most of the errors are handled properly at compile type as well as runtime.
 
 ## Tools used - 
     - Eclipse
