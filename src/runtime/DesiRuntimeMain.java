@@ -10,9 +10,9 @@ public class DesiRuntimeMain {
 	
 	public static void main(String[] args) throws IOException {
 		
-		 String inputFile = "DesiIf.vdesi";
+		 String inputFile = "inputTestFile1.vdesi";
 
-	        String inputPath = "./src/data/";
+	        String inputPath = "data/";
 
 	        String path = "data\\inputTestFile6.vdesi" ;
 	        //System.out.println(path);
