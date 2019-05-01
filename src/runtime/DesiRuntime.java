@@ -9,6 +9,9 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	
 	private Stack<HashMap<String, DataValues>> memoryStack = new Stack<>();
     private List<String> intermediateCode;
+    
+    private int nestedIfCounter = 0;
+    private int nestedWhileCounter = 0;
 
     private int programCounter = 0;
     private String output = "";
@@ -33,7 +36,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 
 
 	    private int executeInstructionHandler(String currentInstruction, int programCounter) throws Exception {
-	    	
+	   
 	    String[] instructions = splitInstruction(currentInstruction);
 		String instructionType = instructions[0];
 		
@@ -65,6 +68,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
         	
         	 
         case IF_SHURU:
+        	nestedIfCounter++;
             programCounter = executeIf(++programCounter);
             break;
         case ELSE_IF_SHURU:
@@ -77,6 +81,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
             
             
         case WHILE_SHURU:
+        	nestedWhileCounter++;
         	programCounter = executeWhile(++programCounter);
         	break;
         	
@@ -264,8 +269,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    private void setValue(String identifier, DataValues value) {
 	        HashMap<String, DataValues> hashMap = memoryStack.peek();
 	        hashMap.put(identifier, value);
-	        //System.out.println(memoryStack);
-	        
+	        System.out.println(memoryStack);	        
 	    }
 	    
 	    private boolean isInt(String value) {
@@ -296,14 +300,19 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    
 	    private int executeWhile(int whileStartCounter) throws Exception {
 	        int counter;
+	        
 	        while(true) {
 	            counter = executionBlock(whileStartCounter, CONDITION_KHATAM,false);
+	            
 	            boolean b= getValue(ACCUMULATOR_REGISTER).asBoolean();
 	           
 	            if(b) {
+
 	            	counter = executionBlock(counter, WHILE_KHATAM,false);
+	            	
 	            }
 	            else {
+	            	
 	                counter = executionBlock(counter, WHILE_KHATAM,true);
 	            	//System.out.println("executing else for b.");
 	                break;
@@ -352,6 +361,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    
 	    
 	    private int executeIf(int programCounter) throws Exception {
+	    	System.out.println("Inside If : "+ nestedIfCounter);
 	    	programCounter = executionBlock(programCounter, CONDITION_KHATAM,false);
 	    	if(getValue(ACCUMULATOR_REGISTER).asBoolean()){
 	    		programCounter = executionBlock(programCounter, IF_KHATAM,false);
