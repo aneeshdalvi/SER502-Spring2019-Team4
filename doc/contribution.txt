@@ -6,13 +6,41 @@ Jinal Patel (jspatel5)
 Viraj Talaty (vtalaty)
 
 Week 1: April 14 - April 21
-Aneesh:Source code test file generation 
-Janice:Intermediate code test file generation
-Jinal:Lexical Analyser for creating tokens
-Viraj:Gnerating visitor classes
+
+  Aneesh - 
+      Created sample source code file by adhering to our language 
+  Janice - 
+      Designed sample intermediate code for our language and added that into our compiler
+  Jinal - 
+      Generated lexical analyser to read source code file and generated token based on desiGrammar.g4 file
+  Vira - 
+      Generated all visitor classes using desiGrammar.g4 file
 
 Week 2: April 21 - April 28
-Aneesh:Intermediate code generation
-Janice:Creating run time environment
-Jinal:Creating run time environment
-Viraj: Intermediate code generation
+
+  Aneesh - 
+      Implemented intermediate code genaration logic and added compile time verfication for our custom language
+      1.
+  Janice - 
+      Implemented Run time behaviour for following constructs
+      1. If 
+      2. Else If
+      3. Else
+      4. Nested Ifs and elseIfs 
+      5. Boolean expression evaluation
+      6. Load instruction
+      
+  Jinal - 
+      Implemented Run time behaviour for following constructs
+      1. While
+      2. Arithmetic expression evaluation
+      3. Type checking at runtime
+      4. Nested While
+      5. Print instruction
+      6. Boolean AND, OR in if condition
+         
+  Viraj - 
+      Implemented intermediate code genaration logic and added compile time verfication for our custom language
+      1.
+
+
