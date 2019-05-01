@@ -11,14 +11,9 @@ public interface DesiRuntimeConstants {
 	public static final String ELSE_IF_KHATAM = "ELSE_IF_KHATAM";
 	public static final String ELSE_SHURU = "ELSE_SHURU";
 	public static final String ELSE_KHATAM = "ELSE_KHATAM";
-	public static final String NULL_STR = "NULL";
 	
 	public static final String DEFAULT_BOOL = "FALSE";
 	public static final String DEFAULT_INT = "0";
-
-
-	public static final String COMPARISION_SHURU = "COMPARISION_SHURU";
-	public static final String COMPARISION_KHATAM = "COMPARISION_KHATAM";
 
 	public static final String ACCUMULATOR_REGISTER = "ACC";
 	public static final String REGISTER_TWO = "B";
@@ -26,7 +21,6 @@ public interface DesiRuntimeConstants {
 	public static final String REGISTER_FOUR = "D";
 
 	public static final String STORE_INSTRUCTION = "LOAD";
-	public static final String READ_INSTRUCTION = "READ";
 	public static final String WRITE_INSTRUCTION = "PRINT";
 
 	public static final String ADDITION = "JODNA";

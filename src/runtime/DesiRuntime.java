@@ -9,7 +9,6 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	
 	private Stack<HashMap<String, DataValues>> memoryStack = new Stack<>();
     private List<String> intermediateCode;
-    private boolean storeReturn = false;
 
     private int programCounter = 0;
     private String output = "";
@@ -265,7 +264,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    private void setValue(String identifier, DataValues value) {
 	        HashMap<String, DataValues> hashMap = memoryStack.peek();
 	        hashMap.put(identifier, value);
-	        System.out.println(memoryStack);
+	        //System.out.println(memoryStack);
 	        
 	    }
 	    

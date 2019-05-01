@@ -15,7 +15,7 @@ public class DesiRuntimeMain {
 	        String inputPath = "./src/data/";
 
 	        String path = inputPath + inputFile;
-	        System.out.println(path);
+	        //System.out.println(path);
 
 	        if (args.length > 0) {
 	            path = args[0];
@@ -29,6 +29,7 @@ public class DesiRuntimeMain {
 
 	            DesiRuntime runtime = new DesiRuntime(code.toString());
 	            runtime.execute();
+	            System.out.println("Output of the program \n"+runtime.getOutputData());
 	            writer.println("Output of the program ");
 	            writer.println(runtime.getOutputData());
 	        }

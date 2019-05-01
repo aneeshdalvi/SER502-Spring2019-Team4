@@ -1,0 +1,17 @@
+shuru
+int a = 5
+int b = 3
+jabtak (a >0)
+    shuru
+    	dikhao (a)
+    	jabtak (b >0)
+	    	shuru
+	    		dikhao (True)
+	    		b = b-1
+	    	khatam
+    	tabtak
+        a = a - 1
+        b = 3
+    khatam
+tabtak
+khatam
