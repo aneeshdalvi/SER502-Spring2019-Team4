@@ -15,7 +15,7 @@ public class CompilerMain {
 
 	public static void main(String[] args) throws IOException {
 
-        String path = "data\\test.desi";
+        String path = "data\\inputTestFile5.desi";
         if (args.length > 0) {
             path = args[0];
         }

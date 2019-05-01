@@ -1,11 +1,11 @@
 shuru
 
-int a = 5;
+int a = 5
 
 jabtak (a < 10)
     shuru
     	dikhao (a)
-        a = a + 1;
+        a = a + 1
     khatam
 tabtak
 
