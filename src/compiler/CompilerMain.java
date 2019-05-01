@@ -14,8 +14,13 @@ import desi.DesiGrammarParser;
 public class CompilerMain {
 
 	public static void main(String[] args) throws IOException {
+		
+		 String inputFile = "inputTest3NestedIf.desi";
 
-        String path = "data\\inputTestFile5.desi";
+	        String inputPath = "data/";
+
+	        String path = inputPath + inputFile;
+        
         if (args.length > 0) {
             path = args[0];
         }
