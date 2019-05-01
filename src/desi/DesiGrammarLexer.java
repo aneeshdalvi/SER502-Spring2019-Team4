@@ -1,11 +1,6 @@
 package desi;
 
-/**
- * This class is Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
- * @author Viraj Talaty, Aneesh Dalvi
- * @since April-10-2019
- * @version 1.0
- */
+// Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

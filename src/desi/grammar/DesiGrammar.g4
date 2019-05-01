@@ -27,6 +27,7 @@ bool_expressn
     | comp_expressn                                       # expressionBooleanComparison
     | '(' bool_expressn ')'                               # expressionBooleanParentheses
     | BOOLEAN											  # expressionBooleanOnly
+    | IDENTIFIER											# expressionBooleanIdentifierOnly
     ;
 comp_expressn
     : num_expressn op=(GREATER|LESSER|MORE_or_EQU|LESS_or_EQU|ISEquals|NotEquals) num_expressn  # expressionNumberComparison

@@ -17,6 +17,7 @@ import desi.DesiGrammarParser.ExpressionBooleanConnectorContext;
 import desi.DesiGrammarParser.ExpressionNumberComparisonContext;
 import desi.DesiGrammarParser.ExpressionBooleanComparisonContext;
 import desi.DesiGrammarParser.ExpressionBooleanContext;
+import desi.DesiGrammarParser.ExpressionBooleanIdentifierOnlyContext;
 import desi.DesiGrammarParser.ExpressionBooleanOnlyContext;
 import desi.DesiGrammarParser.ExpressionBooleanParenthesesContext;
 import desi.DesiGrammarParser.ExpressionNumberIdentifierOnlyContext;
@@ -213,6 +214,22 @@ public class DesiCompiler extends DesiGrammarBaseVisitor<Object>{
 				break;
 		}
 
+		return null;
+	}
+	
+
+	@Override
+	public Object visitExpressionBooleanIdentifierOnly(ExpressionBooleanIdentifierOnlyContext ctx) {
+		String identifier = ctx.IDENTIFIER().getText();
+		if(checkVariableExist(identifier))
+		{
+			intermediateCodeGenerator.addIntermediateOutput(DesiRuntimeConstants.STORE_INSTRUCTION + " " + DesiRuntimeConstants.ACCUMULATOR_REGISTER + " "  + identifier);
+		}
+		else
+		{
+			System.err.println("Compile time error : Variable " +identifier+ " not defined");
+            System.exit(1);
+		}
 		return null;
 	}
 	

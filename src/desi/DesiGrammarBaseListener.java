@@ -1,11 +1,7 @@
 package desi;
 
-/**
- * This class is Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
- * @author Viraj Talaty
- * @since April-10-2019
- * @version 1.0
- */
+// Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
+
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -124,6 +120,18 @@ public class DesiGrammarBaseListener implements DesiGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpressionBooleanConnector(DesiGrammarParser.ExpressionBooleanConnectorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpressionBooleanIdentifierOnly(DesiGrammarParser.ExpressionBooleanIdentifierOnlyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpressionBooleanIdentifierOnly(DesiGrammarParser.ExpressionBooleanIdentifierOnlyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

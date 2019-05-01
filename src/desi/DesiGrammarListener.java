@@ -1,11 +1,5 @@
 package desi;
-
-/**
- * This class is Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
- * @author Viraj Talaty, Aneesh Dalvi
- * @since April-10-2019
- * @version 1.0
- */
+// Generated from ./src/desi/grammar/DesiGrammar.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -115,6 +109,18 @@ public interface DesiGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpressionBooleanConnector(DesiGrammarParser.ExpressionBooleanConnectorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expressionBooleanIdentifierOnly}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionBooleanIdentifierOnly(DesiGrammarParser.ExpressionBooleanIdentifierOnlyContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expressionBooleanIdentifierOnly}
+	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionBooleanIdentifierOnly(DesiGrammarParser.ExpressionBooleanIdentifierOnlyContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expressionBooleanOnly}
 	 * labeled alternative in {@link DesiGrammarParser#bool_expressn}.
