@@ -9,9 +9,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	
 	private Stack<HashMap<String, DataValues>> memoryStack = new Stack<>();
     private List<String> intermediateCode;
-    
-    private int nestedIfCounter = 0;
-    private int nestedWhileCounter = 0;
+   
 
     private int programCounter = 0;
     private String output = "";
@@ -68,7 +66,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
         	
         	 
         case IF_SHURU:
-        	nestedIfCounter++;
+        	
             programCounter = executeIf(++programCounter);
             break;
         case ELSE_IF_SHURU:
@@ -81,7 +79,6 @@ public class DesiRuntime implements DesiRuntimeConstants{
             
             
         case WHILE_SHURU:
-        	nestedWhileCounter++;
         	programCounter = executeWhile(++programCounter);
         	break;
         	
@@ -361,7 +358,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    
 	    
 	    private int executeIf(int programCounter) throws Exception {
-	    	System.out.println("Inside If : "+ nestedIfCounter);
+	    	
 	    	programCounter = executionBlock(programCounter, CONDITION_KHATAM,false);
 	    	if(getValue(ACCUMULATOR_REGISTER).asBoolean()){
 	    		programCounter = executionBlock(programCounter, IF_KHATAM,false);
