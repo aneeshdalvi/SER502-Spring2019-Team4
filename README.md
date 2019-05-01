@@ -64,10 +64,10 @@ We are proud to create and name this new programming language by incorporating t
   
 ## Terminal Commands to run the compiler:
   
-     ### Run the command to generate compiler jar: 
+     Run the command to generate compiler jar: 
         java -jar desiCompiler.jar inputTestFile1.desi
      
-     ### Run the command to generate runtime jar:
+     Run the command to generate runtime jar:
         java -jar desiRuntime.jar inputTestFile1.vdesi
      
  
