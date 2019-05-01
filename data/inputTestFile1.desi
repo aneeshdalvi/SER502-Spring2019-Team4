@@ -1,19 +1,21 @@
 shuru
-    int a =9
-    agar (a < 5)
+    int a = 9
+    agar (a > 5)
         shuru
-            
              a = a*10
+             dikhao (12)
         khatam
-    magar (a > 5)
-    shuru
-        a = a / 3
-    khatam
+    magar (a < 5)
+	    shuru
+	        a = a / 3
+	        dikhao (13)
+	    khatam
     nahitoh
         shuru
-                a = a+20
+    		dikhao (14)
+            a = a+20
         khatam
         
     bas
-    dikhao (a)
+    dikhao (15)
 khatam

@@ -27,7 +27,7 @@ public class CompilerMain {
 
 		//Input file config
 		String inputPath = "data/";
-		String inputFileName = "test";
+		String inputFileName = "inputTestFile1";
 		String inputFileExtension = ".desi";
 		
 		String path = inputPath + inputFileName+inputFileExtension;
