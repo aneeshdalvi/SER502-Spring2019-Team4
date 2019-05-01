@@ -1,6 +1,6 @@
 # SER502-Spring2019-Team4
 
-# DESI LANGUAGE
+# Language Name : DESI
 
 We are proud to create and name this new programming language by incorporating the keywords of Hindi language to add essence of our culture in it.  
 
