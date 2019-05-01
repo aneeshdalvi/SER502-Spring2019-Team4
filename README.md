@@ -4,17 +4,17 @@
 
 We are proud to create and name this new programming language by incorporating the keywords of Hindi language to incorporate our culture with it.  
 
-### Tools used - 
-    Eclipse, 
-    Antlr, 
-    Git.
+## Tools used - 
+    - Eclipse
+    - Antlr
+    - Git
 
 ## System which are used to build compiler and runtime -
-    Linux, 
-    Windows, 
-    MacOS
+    - Linux 
+    - Windows 
+    - MacOS
 
-## How to Install:
+## Directions/instructions to install our language
 
   Follow the below steps to install this git project:
     
@@ -23,7 +23,7 @@ We are proud to create and name this new programming language by incorporating t
     3. Open the project in Eclipse using following steps:
         Files >> Open Project From File System. Browser your project folder here upto extracted project directory.
 
-## Building the language:
+## How to build jars of our programming language
 
   Compiler and Runtime library of our new programming language can be build using jar files.
   Follow below steps to generate two seperate jar files:
@@ -38,7 +38,7 @@ We are proud to create and name this new programming language by incorporating t
         - for desiCompiler.jar select CompilerMain.java
         - for desiRuntime.jar select DesiRuntimeMain.java
         
-  ## How to run any program using this custom language
+## How to run any program using this custom language
 
   1. Run via Eclipse:
   
@@ -62,13 +62,15 @@ We are proud to create and name this new programming language by incorporating t
     f. The output of the program can be obtained by navigating to the file "inputTestFile1.output" in same directory.
   
   
-Terminal Commands to run the compiler:
+## Terminal Commands to run the compiler:
   
-     Run the command: 
-     java -jar desiCompiler.jar inputTestFile1.desi
-     java -jar desiRuntime.jar inputTestFile1.vdesi
+     ### Run the command to generate compiler jar: 
+        java -jar desiCompiler.jar inputTestFile1.desi
+     
+     ### Run the command to generate runtime jar:
+        java -jar desiRuntime.jar inputTestFile1.vdesi
      
  
-Link to Youtube Video
+## Link to Youtube Video
 
     
