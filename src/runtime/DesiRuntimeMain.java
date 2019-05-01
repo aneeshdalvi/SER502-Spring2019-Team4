@@ -14,7 +14,7 @@ public class DesiRuntimeMain {
 
 	        String inputPath = "data/";
 
-	        String path = "data\\inputTestFile6.vdesi" ;
+	        String path = "data\\inputTestFile5.vdesi" ;
 	        //System.out.println(path);
 
 	        if (args.length > 0) {
@@ -27,7 +27,7 @@ public class DesiRuntimeMain {
 
 	        try {
 
-	            DesiRuntime runtime = new DesiRuntime(code.toString());
+	        	DesiRuntime runtime = new DesiRuntime(code.toString().replaceAll("\r", ""));
 	            runtime.execute();
 	            System.out.println("Output of the program \n"+runtime.getOutputData());
 	            writer.println("Output of the program ");
