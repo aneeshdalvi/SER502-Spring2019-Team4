@@ -15,7 +15,7 @@ public class CompilerMain {
 
 	public static void main(String[] args) throws IOException {
 		
-		 String inputFile = "inputTest3NestedIf.desi";
+		 String inputFile = "inputTestFile1.desi";
 
 	        String inputPath = "data/";
 
