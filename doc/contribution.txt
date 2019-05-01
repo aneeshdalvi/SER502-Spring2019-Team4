@@ -20,7 +20,14 @@ Week 2: April 21 - April 28
 
   Aneesh - 
       Implemented intermediate code genaration logic and added compile time verfication for our custom language
-      1.
+      1. Updated existing grammar to handle boolean values
+      2. Implemented logic for intermediate code generation for following constructs:
+          - If 
+          - Else If
+          - Else
+          - Boolean expression generation with precedence
+          - Load instruction
+     
   Janice - 
       Implemented Run time behaviour for following constructs
       1. If 
@@ -41,6 +48,13 @@ Week 2: April 21 - April 28
          
   Viraj - 
       Implemented intermediate code genaration logic and added compile time verfication for our custom language
-      1.
+      1. Added opearators precedence for the current grammar
+      2. Implemented logic for intermediate code generation for following constructs:
+          - While
+          - Arithmetic expression generation with precedence
+          - Variable initialization based on datatype at compile time
+          - Print instruction
+          - Boolean AND, OR genaration in if condition
+
 
 
