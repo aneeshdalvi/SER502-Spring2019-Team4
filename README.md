@@ -29,14 +29,22 @@ We are proud to create and name this new programming language by incorporating t
   Follow below steps to generate two seperate jar files:
   
     1. Right click on the project folder at the top.
-    2. Under the Java Option, select Runnable JAR File option. Click Next.
+    2. Click on Export -> Under the Java Option, select Runnable JAR File option. -> Click Next.
     3. Select the destination directory in which you want to export the jar.
          Note that there are 2 JAR's being created. 
             One for compilation which gives the intermediate code from source code and 
             One for runtime which evaluates this intermediate code to get the final output.
-    4. Under the option Launch Configuration, select the respective files for the respective JAR's:
+    4. Under Library handling chose "package required libraries into generated Jar" 
+    5. Under the option Launch Configuration, select the respective files for the respective JAR's:
         - for desiCompiler.jar select CompilerMain.java
         - for desiRuntime.jar select DesiRuntimeMain.java
+    6. Click on Finish 
+    Note : Jar will be generated under selected destination folder mentioned in step 3
+    For MacOs, this jar will not have default run permission. Follow below steps to make it executable
+        1. Navigate to folder in which jars are generated
+        2. run below unix command 
+            chmod 755 desiCompiler.jar
+            chmod 755 desiRuntime.jar   
         
 ## How to run any program using this custom language
 
