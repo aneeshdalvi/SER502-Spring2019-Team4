@@ -9,8 +9,20 @@ Week 1: April 14 - April 21
 
   Aneesh - 
       Created sample source code file by adhering to our language 
+      Created Following source code files -
+          1. Sample If construct
+          2. Sample ElseIf construct
+          3. Sample Else construct
+          4. Sample While construct
+          5. Orthogonal constructs
   Janice - 
       Designed sample intermediate code for our language and added that into our compiler
+      Created Following intermediate code files -
+          1. Sample If construct
+          2. Sample ElseIf construct
+          3. Sample Else construct
+          4. Sample While construct
+          5. Orthogonal constructs
   Jinal - 
       Generated lexical analyser to read source code file and generated token based on desiGrammar.g4 file
   Vira - 
