@@ -46,21 +46,26 @@ We are proud to create and name this new programming language by incorporating t
             chmod 755 desiCompiler.jar
             chmod 755 desiRuntime.jar   
         
-## How to build jars using build command
+## How to build jars using ant build command
 
    Compiler and Runtime library of our new programming language can be build using jar files.
-   Follow below steps to generate two seperate jar files:    
+   Follow below steps to generate two seperate jar files usong ant build file:    
    
-    0. Ant build should be installed
-    1. Open command prompt or a terminal
-    2. In the command prompt navigate to the location where the project is extracted.
-    3. The folder will have build.xml file present 
-    4. To generate the compiler jar run the below command
+    1. Prerequisite : Ant build should be installed on your system
+    2. Open command prompt or a terminal
+    3. Navigate upto the location where the project is extracted
+    4. The folder will have build.xml file present 
+    5. To generate the compiler jar run the below command
          - ant compiler_jar
-       Wait for the command to execute, once complete the copiler.jar will be generated in the same folder
-    5. To generate the runtime jar run the below command
+       Wait for the command to execute, once complete the desiCompiler.jar will be generated in the same folder
+    6. To generate the runtime jar run the below command
          - ant runtime_jar
-       Wait for the command to execute, once complete the runtime.jar will be generated in the same folder
+       Wait for the command to execute, once complete the desiRuntime.jar will be generated in the same folder
+       For MacOs, this jar will not have default run permission. Follow below steps to make it executable
+        1. Navigate to folder in which jars are generated
+        2. run below unix command 
+            chmod 755 desiCompiler.jar
+            chmod 755 desiRuntime.jar
 
 ## How to run any program using this custom language
 
