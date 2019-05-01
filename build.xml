@@ -3,7 +3,8 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="SER502-Spring2019-Team4">
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="SER502-Spring2019-Team4">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="C:/Users/my/eclipse/jee-photon/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -13,6 +14,8 @@
         <pathelement location="bin"/>
         <pathelement location="lib/antlr-4.7.1-complete.jar"/>
     </path>
+              	
+              	
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -28,6 +31,7 @@
             </fileset>
         </copy>
     </target>
+              	
     <target name="clean">
         <delete dir="bin"/>
     </target>
@@ -42,6 +46,12 @@
             <classpath refid="SER502-Spring2019-Team4.classpath"/>
         </javac>
     </target>
+	
+    <target name="init1">
+    	 <tstamp/>
+    	 <mkdir dir="build"/>
+    </target>
+	
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
@@ -56,14 +66,14 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="502_Runtime">
+    <target name="502_Runtime" depends="init1">
     	<javac srcdir="src/runtime" destdir="build">
     		<src path="src/runtime"/>
     		<classpath refid="SER502-Spring2019-Team4.classpath"/>
         </javac>
     </target>
               	
-    <target name="502_Compiler">
+    <target name="502_Compiler" depends="init1">
     	<javac srcdir="src/compiler" destdir="build">
         	<src path="src/compiler"/>
     		<src path="src/desi"/>
@@ -74,7 +84,7 @@
               	
               	
   	<target name="compiler_jar" depends="502_Compiler">
-        <jar destfile="compiler.jar" basedir="build">
+        <jar destfile="desiCompiler.jar" basedir="build">
 			<manifest>
                 <attribute name="Main-Class" value="compiler.CompilerMain"/>
             </manifest>
@@ -85,7 +95,7 @@
               	
              	
   	<target name="runtime_jar" depends="502_Runtime">
-        <jar destfile="runtime.jar" basedir="build">
+        <jar destfile="desiRuntime.jar" basedir="build">
             <manifest>
                 <attribute name="Main-Class" value="runtime.DesiRuntimeMain"/>
             </manifest>
