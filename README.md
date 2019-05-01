@@ -1,6 +1,6 @@
 # SER502-Spring2019-Team4
 
-## DESI LANGUAGE
+# DESI LANGUAGE
 
 We are proud to create and name this new programming language by incorporating the keywords of Hindi language to add essence of our culture in it.  
 
@@ -46,6 +46,22 @@ We are proud to create and name this new programming language by incorporating t
             chmod 755 desiCompiler.jar
             chmod 755 desiRuntime.jar   
         
+## How to build jars using build command
+
+   Compiler and Runtime library of our new programming language can be build using jar files.
+   Follow below steps to generate two seperate jar files:    
+   
+    0. Ant build should be installed
+    1. Open command prompt or a terminal
+    2. In the command prompt navigate to the location where the project is extracted.
+    3. The folder will have build.xml file present 
+    4. To generate the compiler jar run the below command
+         - ant compiler_jar
+       Wait for the command to execute, once complete the copiler.jar will be generated in the same folder
+    5. To generate the runtime jar run the below command
+         - ant runtime_jar
+       Wait for the command to execute, once complete the runtime.jar will be generated in the same folder
+
 ## How to run any program using this custom language
 
   1. Run via Eclipse:
