@@ -28,7 +28,7 @@ We are proud to create and name this new programming language by incorporating t
   Compiler and Runtime library of our new programming language can be build using jar files.
   Follow below steps to generate two seperate jar files:
   
-    1. Right click on the project folderat the top.
+    1. Right click on the project folder at the top.
     2. Under the Java Option, select Runnable JAR File option. Click Next.
     3. Select the destination directory in which you want to export the jar.
          Note that there are 2 JAR's being created. 
@@ -45,19 +45,21 @@ We are proud to create and name this new programming language by incorporating t
     a. To enter a custom code, navigate to the package 'data' and change or create the file of type inputTestFile1.desi
         Paste your code in this file that you want to run for the language. 
         You can also select sample codes available in the same package.
-        Note : File extension should be desi for your source code
-    b. Under the default package, right click on CompilerMain.java and click Run.
-    c. The intermediate code of the program can be obtained by navigating to the file "inputFile.intermediate" in 'data' package.
-    d. Now, under the runtime package, right click on RunTimeMain.java and click Run. The output of the program can be obtained by navigating to the file "inputFile.output" in 'data' package.
+        # Note : File extension should be desi for your source code
+    b. Under the src -> compiler package, right click on CompilerMain.java and click Run.
+    c. The intermediate code of the program can be obtained by navigating to the file "inputTestFile1.vdesi" in 'data' package.
+    d. Now, under the src -> runtime package, right click on DesiRuntimeMain.java and click Run. 
+    The output of the program can be obtained by navigating to the file "inputTestFile1.output" in 'data' package.
     
   2. Run via JAR:
   
-    a. In the terminal, navigate to the directory where the race.jar is available.
-    b. Create a file inputFile.race and paste the code that needs to be run. Note that the file should be in the same directory where the race.jar is present.
-    c. Run the command: "java -jar raceCompiler.jar inputFile.race".
-    d. The intermediate code of the program can be obtained by navigating to the file "inputFile.intermediate" in same directory.
-    e. Now run the command "java -jar raceRunTime.jar inputFile.intermediate".
-    f. The output of the program can be obtained by navigating to the file "inputFile.output" in same directory.
+    a. In the terminal, navigate to the directory where the desiCompiler.jar is present.
+    b. Create a file inputTestFile1.desi and paste the code that needs to be run. 
+        Note that the file should be in the same directory as the desiCompiler jar.
+    c. Run the command: "java -jar desiCompiler.jar inputTestFile1.desi" from terminal.
+    d. The intermediate code of the program can be obtained by navigating to the file "inputTestFile1.vdesi" in same directory.
+    e. Now run the command "java -jar desiRuntime.jar inputTestFile1.vdesi".
+    f. The output of the program can be obtained by navigating to the file "inputTestFile1.output" in same directory.
   
   
 Terminal Commands to run the compiler:
