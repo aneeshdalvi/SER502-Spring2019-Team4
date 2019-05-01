@@ -17,7 +17,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	
 	 public DesiRuntime(String intermediateCode) {
 	        this.intermediateCode = Arrays.asList(intermediateCode.split("\\n"));
-	        System.out.println("intermediate code"+ this.intermediateCode) ;
+	        //System.out.println("intermediate code"+ this.intermediateCode) ;
 	    }
 
 	 
@@ -66,7 +66,6 @@ public class DesiRuntime implements DesiRuntimeConstants{
         	
         	 
         case IF_SHURU:
-        	
             programCounter = executeIf(++programCounter);
             break;
         case ELSE_IF_SHURU:
@@ -102,7 +101,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 			DataValues right = getWildCardValue(instruction[3]);
 			String leftDatatype = left.getDataType();
 			String rightDatatype = right.getDataType();
-			System.out.println(leftDatatype + " "+ rightDatatype);
+			//System.out.println(leftDatatype + " "+ rightDatatype);
 			if(leftDatatype!=rightDatatype) {
 				throw new Exception("Data mismatch");
 			}else if(leftDatatype==rightDatatype && !leftDatatype.equalsIgnoreCase("integer")) {
@@ -266,7 +265,7 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    private void setValue(String identifier, DataValues value) {
 	        HashMap<String, DataValues> hashMap = memoryStack.peek();
 	        hashMap.put(identifier, value);
-	        System.out.println(memoryStack);	        
+	        //System.out.println(memoryStack);	        
 	    }
 	    
 	    private boolean isInt(String value) {
@@ -339,9 +338,10 @@ public class DesiRuntime implements DesiRuntimeConstants{
 	    
 	    
 	    private int executionBlock(int programCounter, String stopCond,boolean skipLastConditionCheck) throws Exception {
+	    	//System.out.println(programCounter+" : "+intermediateCode.size());
 	        while(programCounter >= 0) {
 	            String instruction = intermediateCode.get(programCounter);
-	            //System.out.println(instruction);
+	            
 	            if (instruction.equals(stopCond)) {
 	                break;
 	            }

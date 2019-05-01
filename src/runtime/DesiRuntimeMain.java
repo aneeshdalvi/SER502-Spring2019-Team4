@@ -10,11 +10,11 @@ public class DesiRuntimeMain {
 	
 	public static void main(String[] args) throws IOException {
 		
-		 String inputFile = "inputTestFile1.vdesi";
+		 String inputFile = "inputTestFile5.vdesi";
 
 	        String inputPath = "data/";
 
-	        String path = "data\\inputTestFile6.vdesi" ;
+	        String path = inputPath + inputFile;
 	        //System.out.println(path);
 
 	        if (args.length > 0) {
@@ -27,7 +27,7 @@ public class DesiRuntimeMain {
 
 	        try {
 
-	            DesiRuntime runtime = new DesiRuntime(code.toString());
+	            DesiRuntime runtime = new DesiRuntime(code.toString().replaceAll("\\r", ""));
 	            runtime.execute();
 	            System.out.println("Output of the program \n"+runtime.getOutputData());
 	            writer.println("Output of the program ");
