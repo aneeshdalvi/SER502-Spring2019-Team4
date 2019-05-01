@@ -1,1 +1,18 @@
+Contributions for Project Milestone 3:
+Team 4 Members:
+Aneesh Dalvi (adlavi1)
+Janice Abraham (jjabrah5)
+Jinal Patel (jspatel5)
+Viraj Talaty (vtalaty)
 
+Week 1: April 14 - April 21
+Aneesh:Source code test file generation 
+Janice:Intermediate code test file generation
+Jinal:Lexical Analyser for creating tokens
+Viraj:Gnerating visitor classes
+
+Week 2: April 21 - April 28
+Aneesh:Intermediate code generation
+Janice:Creating run time environment
+Jinal:Creating run time environment
+Viraj: Intermediate code generation
