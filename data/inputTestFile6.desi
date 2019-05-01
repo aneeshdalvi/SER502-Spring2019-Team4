@@ -1,0 +1,10 @@
+shuru
+
+boolean b = True
+int a = 11
+agar (b)
+    shuru
+        dikhao (11)
+    khatam
+bas
+khatam
