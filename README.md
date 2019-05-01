@@ -2,7 +2,7 @@
 
 ## DESI LANGUAGE
 
-We are proud to create and name this new programming language by incorporating the keywords of Hindi language to incorporate our culture with it.  
+We are proud to create and name this new programming language by incorporating the keywords of Hindi language to add essence of our culture in it.  
 
 ## Tools used - 
     - Eclipse
