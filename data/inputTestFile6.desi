@@ -1,0 +1,18 @@
+shuru
+
+int a = 8
+agar (a > 4)
+    shuru
+        agar (a < 7)
+        shuru 
+            agar (a == 8)
+                shuru
+                    dikhao (a)
+                khatam
+              bas
+              dikhao (a)
+        khatam
+        bas
+    khatam
+    bas
+khatam

@@ -3,19 +3,15 @@ shuru
     agar (a > 5)
         shuru
              a = a*10
-             dikhao (12)
         khatam
     magar (a < 5)
 	    shuru
 	        a = a / 3
-	        dikhao (13)
 	    khatam
     nahitoh
         shuru
-    		dikhao (14)
             a = a+20
-        khatam
-        
+        khatam        
     bas
-    dikhao (15)
+    dikhao (a)
 khatam

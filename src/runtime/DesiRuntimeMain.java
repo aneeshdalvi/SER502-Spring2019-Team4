@@ -14,7 +14,7 @@ public class DesiRuntimeMain {
 
 	        String inputPath = "./src/data/";
 
-	        String path = inputPath + inputFile;
+	        String path = "data\\inputTestFile6.vdesi" ;
 	        //System.out.println(path);
 
 	        if (args.length > 0) {
